@@ -9,10 +9,23 @@
   <meta property="og:description" content="AIと共に、事業を前進させる。WebアプリからHP・LP制作まで。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://solven-jp.github.io/solven-hp/">
+  <link rel="canonical" href="https://solven-jp.github.io/solven-hp/">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "SOLVEN",
+    "url": "https://solven-jp.github.io/solven-hp/",
+    "description": "AIを活用したWebアプリ開発・ホームページ制作・業務効率化支援を提供します。",
+    "areaServed": "Japan",
+    "serviceType": ["Webアプリ開発", "ホームページ制作", "ランディングページ制作", "AI活用支援"]
+  }
+  </script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,13 +46,17 @@
       --r-sm: 8px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+    }
 
     body {
       font-family: 'Outfit', sans-serif;
       background: var(--bg-0);
       color: var(--text-1);
       min-height: 100vh;
+      overflow-x: clip;
     }
 
     .grid-bg {
@@ -99,6 +116,17 @@
     }
     @media (max-width: 600px) { .nav-links { display: none; } }
 
+    .mobile-cta {
+      display: none !important;
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 250;
+      justify-content: center;
+      box-shadow: 0 14px 38px rgba(0, 229, 204, .28);
+    }
+
     /* HERO */
     .hero {
       position: relative;
@@ -115,6 +143,7 @@
       width: 680px; height: 680px;
       background: radial-gradient(circle, rgba(0,229,204,.07) 0%, transparent 65%);
       pointer-events: none;
+      max-width: 70vw;
     }
     .hero-glow2 {
       position: absolute;
@@ -122,6 +151,7 @@
       width: 400px; height: 400px;
       background: radial-gradient(circle, rgba(0,100,180,.06) 0%, transparent 65%);
       pointer-events: none;
+      max-width: 55vw;
     }
     .hero-content {
       position: relative;
@@ -477,6 +507,27 @@
       font-weight: 600;
       margin-top: .75rem;
     }
+    .works-details {
+      display: grid;
+      gap: .55rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(0,229,204,.12);
+    }
+    .works-detail {
+      display: grid;
+      grid-template-columns: 5.5em 1fr;
+      gap: .75rem;
+      color: var(--text-2);
+      font-size: .82rem;
+      line-height: 1.65;
+    }
+    .works-detail span {
+      color: var(--cyan);
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
     .works-link {
       display: inline-block;
       margin-top: 1rem;
@@ -654,6 +705,54 @@
     .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media (max-width: 480px) { .frow { grid-template-columns: 1fr; } }
     .fnote { font-size: .75rem; color: var(--text-3); text-align: center; margin-top: .4rem; }
+    .privacy-note {
+      color: var(--text-2);
+      font-size: .78rem;
+      line-height: 1.8;
+      text-align: center;
+      margin-top: .75rem;
+    }
+    .privacy-note a,
+    .footer-links a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+    .privacy-note a:hover,
+    .footer-links a:hover { text-decoration: underline; }
+
+    /* COMPANY */
+    #company {
+      background: var(--bg-0);
+      border-top: 1px solid var(--border);
+    }
+    .company-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .company-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-1);
+      padding: 1.25rem;
+      min-width: 0;
+    }
+    .company-label {
+      display: block;
+      color: var(--cyan);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: .35rem;
+    }
+    .company-value {
+      color: var(--text-1);
+      font-size: .92rem;
+      line-height: 1.75;
+      overflow-wrap: break-word;
+    }
 
     /* FOOTER */
     footer {
@@ -675,6 +774,44 @@
       letter-spacing: .16em;
     }
     .footer-copy { font-size: .75rem; color: var(--text-3); }
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      font-size: .75rem;
+      color: var(--text-3);
+    }
+
+    @media (max-width: 1024px) {
+      .price-grid { grid-template-columns: 1fr; }
+      .process-timeline {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .process-arrow { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      body { padding-bottom: 86px; }
+      .mobile-cta { display: inline-flex !important; }
+      .hero { min-height: 92vh; overflow: clip; }
+      .hero-glow {
+        width: 360px;
+        height: 360px;
+        left: -120px;
+        max-width: none;
+      }
+      .hero-glow2 {
+        width: 260px;
+        height: 260px;
+        right: -120px;
+        max-width: none;
+      }
+      .hero-title { font-size: clamp(2.55rem, 14vw, 3.35rem); }
+      .hero-actions a { width: 100%; justify-content: center; }
+      .company-grid { grid-template-columns: 1fr; }
+      footer { padding-bottom: 6rem; }
+      .footer-links { width: 100%; }
+    }
 
     /* ANIMATIONS */
     @keyframes fadeUp {
@@ -696,6 +833,7 @@
 <body>
 
 <div class="grid-bg" aria-hidden="true"></div>
+<a href="#contact" class="btn-primary mobile-cta">無料で相談する →</a>
 
 <!-- NAV -->
 <nav>
@@ -718,8 +856,8 @@
       <span class="hl">事業を前進させる。</span>
     </h1>
     <p class="hero-sub">
-      SOLVENは、AIを活用したWebアプリ開発・ホームページ制作で、<br>
-      あなたのビジネスを前進させるパートナーです。
+      中小企業の業務効率化とWeb集客を、AI活用で素早く形に。<br>
+      業務アプリ開発・HP/LP制作・自動化支援まで伴走します。
     </p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">無料で相談する →</a>
@@ -917,6 +1055,11 @@
         <span class="works-badge">Webアプリ</span>
         <h3 class="works-title">人材派遣業 従業員管理システム</h3>
         <p class="works-meta">従業員情報・雇用契約・有給管理・資格証明書を一元管理</p>
+        <div class="works-details">
+          <p class="works-detail"><span>課題</span>紙・表計算での更新漏れと確認工数</p>
+          <p class="works-detail"><span>対応</span>台帳、契約、証明書管理を一画面に集約</p>
+          <p class="works-detail"><span>成果</span>確認作業を標準化し、担当者の引き継ぎを容易に</p>
+        </div>
       </article>
       <article class="works-card">
         <svg class="works-image" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -931,6 +1074,11 @@
         <span class="works-badge">Webアプリ</span>
         <h3 class="works-title">人材派遣業 派遣管理システム</h3>
         <p class="works-meta">スタッフ配置・稼働状況・シフト管理をデジタル化</p>
+        <div class="works-details">
+          <p class="works-detail"><span>課題</span>配置状況と稼働予定の確認が属人化</p>
+          <p class="works-detail"><span>対応</span>スタッフ、案件、シフトを一覧で管理</p>
+          <p class="works-detail"><span>成果</span>確認・更新の流れを統一し、日次運用を短縮</p>
+        </div>
       </article>
       <article class="works-card">
         <svg class="works-image" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -945,6 +1093,11 @@
         <span class="works-badge">Webアプリ</span>
         <h3 class="works-title">不動産業 案件管理システム</h3>
         <p class="works-meta">物件情報・顧客対応・商談進捗を一元管理</p>
+        <div class="works-details">
+          <p class="works-detail"><span>課題</span>案件進捗と顧客対応履歴が分散</p>
+          <p class="works-detail"><span>対応</span>物件、顧客、商談ステータスを統合</p>
+          <p class="works-detail"><span>成果</span>対応漏れを防ぎ、営業状況を見える化</p>
+        </div>
       </article>
       <article class="works-card">
         <svg class="works-image" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -958,6 +1111,11 @@
         <span class="works-badge">LP制作</span>
         <h3 class="works-title">不動産会社 LP制作</h3>
         <p class="works-meta">名古屋・愛知エリアの不動産売買 / 問い合わせフォーム・スマホ対応</p>
+        <div class="works-details">
+          <p class="works-detail"><span>課題</span>地域検索からの問い合わせ導線を整備</p>
+          <p class="works-detail"><span>対応</span>スマホ前提の構成、フォーム、SEO基本設定</p>
+          <p class="works-detail"><span>成果</span>サービス内容と相談導線を1ページに集約</p>
+        </div>
       </article>
       <article class="works-card">
         <svg class="works-image" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -972,6 +1130,11 @@
         <span class="works-badge">コーポレート</span>
         <h3 class="works-title">人材派遣会社 コーポレートサイト</h3>
         <p class="works-meta">人材派遣会社 コーポレートサイト / 企業向け・求職者向け2動線設計</p>
+        <div class="works-details">
+          <p class="works-detail"><span>課題</span>企業向けと求職者向け情報が混在</p>
+          <p class="works-detail"><span>対応</span>閲覧者別に導線を整理し、問い合わせを分離</p>
+          <p class="works-detail"><span>成果</span>必要情報に迷わず到達できる構成へ改善</p>
+        </div>
       </article>
     </div>
   </div>
@@ -1044,6 +1207,51 @@
         <div class="faq-answer">
           <p>LP・HPは2〜4週間、Webアプリは2〜3ヶ月が目安です。急ぎのご要望はご相談ください。</p>
         </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span>契約前にどこまで相談できますか？</span>
+          <span class="faq-arrow" aria-hidden="true">▶</span>
+        </button>
+        <div class="faq-answer">
+          <p>初回相談では、目的整理・概算費用・進め方のご提案まで無料で対応します。詳細設計や制作作業はご契約後に開始します。</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span>修正や保守は依頼できますか？</span>
+          <span class="faq-arrow" aria-hidden="true">▶</span>
+        </button>
+        <div class="faq-answer">
+          <p>納品前の修正対応に加え、公開後の文言修正・軽微な改修・障害対応・改善提案を行う月額保守プランをご用意しています。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section id="company">
+  <div class="inner reveal">
+    <p class="stag">Company</p>
+    <h2 class="stitle">運営者情報</h2>
+    <p class="sdesc">初回相談から設計・制作・公開後の改善まで、代表が責任を持って対応します。</p>
+    <div class="company-grid">
+      <div class="company-item">
+        <span class="company-label">屋号</span>
+        <p class="company-value">SOLVEN</p>
+      </div>
+      <div class="company-item">
+        <span class="company-label">代表</span>
+        <p class="company-value">岩本 和貴</p>
+      </div>
+      <div class="company-item">
+        <span class="company-label">事業内容</span>
+        <p class="company-value">Webアプリ開発、HP・LP制作、AI活用支援、Webサイト保守</p>
+      </div>
+      <div class="company-item">
+        <span class="company-label">対応エリア</span>
+        <p class="company-value">全国対応。オンラインでの相談・打ち合わせに対応しています。</p>
       </div>
     </div>
   </div>
@@ -1124,8 +1332,38 @@
             送信する →
           </button>
           <p class="fnote" id="form-note">送信内容は1〜2営業日以内にご返信します。</p>
+          <p class="privacy-note">
+            送信により、<a href="#privacy">プライバシーポリシー</a>に同意したものとみなします。
+          </p>
         </div>
       </form>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section id="privacy">
+  <div class="inner reveal">
+    <p class="stag">Privacy</p>
+    <h2 class="stitle">プライバシーポリシー</h2>
+    <p class="sdesc">お問い合わせで取得した情報は、相談対応・見積作成・連絡のために利用し、法令に基づく場合を除き第三者へ提供しません。</p>
+    <div class="company-grid">
+      <div class="company-item">
+        <span class="company-label">取得する情報</span>
+        <p class="company-value">会社名、お名前、メールアドレス、お問い合わせ内容、検討中のサービス</p>
+      </div>
+      <div class="company-item">
+        <span class="company-label">利用目的</span>
+        <p class="company-value">お問い合わせへの返信、見積作成、提案、契約前後の連絡</p>
+      </div>
+      <div class="company-item">
+        <span class="company-label">管理</span>
+        <p class="company-value">取得情報は適切に管理し、不要になった情報は確認のうえ削除します。</p>
+      </div>
+      <div class="company-item">
+        <span class="company-label">改定</span>
+        <p class="company-value">内容を変更する場合は、本ページ上で告知します。</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1133,6 +1371,10 @@
 <!-- FOOTER -->
 <footer>
   <span class="footer-logo">SOLVEN</span>
+  <span class="footer-links">
+    <a href="#company">運営者情報</a>
+    <a href="#privacy">プライバシーポリシー</a>
+  </span>
   <span class="footer-copy">© 2026 SOLVEN. All rights reserved.</span>
 </footer>
 
