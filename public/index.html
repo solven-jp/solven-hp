@@ -1783,12 +1783,17 @@
       }
       .hero-title .jp-chunk,
       .hero-title .hl,
-      .jp-chunk,
-      .nowrap {
+      .jp-chunk {
         white-space: normal;
         word-break: normal;
         overflow-wrap: anywhere;
         hyphens: auto;
+      }
+      .nowrap {
+        white-space: nowrap;
+        word-break: keep-all;
+        overflow-wrap: normal;
+        hyphens: none;
       }
       .stitle {
         font-size: clamp(1.52rem, 7.6vw, 2.05rem);
@@ -2043,7 +2048,7 @@
     </div>
     <div class="proof-item">
       <span class="proof-label">Workflow</span>
-      <p class="proof-text">Excel管理、予約、顧客対応、問い合わせ導線を整理します。</p>
+      <p class="proof-text"><span class="nowrap">Excel管理</span>、予約、顧客対応、<span class="nowrap">問い合わせ導線</span>を整理します。</p>
     </div>
     <div class="proof-item">
       <span class="proof-label">Aftercare</span>
@@ -2058,7 +2063,7 @@
     <div class="consult-lead reveal">
       <p class="stag">Consultation</p>
       <h2 class="stitle">名古屋・愛知の中小企業向け業務改善相談</h2>
-      <p class="sdesc">システム化する前の段階から相談できます。今の管理方法、困っている作業、予算感を聞いたうえで、Webアプリを作るべきか、HP・LPの導線を整えるべきか、既存サイトや既存ツールの改善で足りるかを整理します。</p>
+      <p class="sdesc">システム化する前の段階から相談できます。今の管理方法、困っている作業、予算感を聞いたうえで、<span class="nowrap">Webアプリ</span>を作るべきか、<span class="nowrap">HP・LP</span>の導線を整えるべきか、既存サイトや既存ツールの改善で足りるかを整理します。</p>
       <p class="consult-note">初回で無理に開発へ進めません。小さな改善で済むもの、既存ツールで足りるもの、制作した方が良いものを分けて提案します。</p>
     </div>
     <div class="consult-list">
@@ -2091,14 +2096,14 @@
 <section id="services">
   <div class="inner">
     <p class="stag">Services</p>
-    <h2 class="stitle">HP・LP制作、Webアプリ制作、改善相談の3つの入口</h2>
-    <p class="sdesc">新しく作る、業務に合わせて作る、今あるものを直す。初回相談で、どこから始めるのがよいか一緒に整理します。</p>
+    <h2 class="stitle"><span class="nowrap">HP・LP制作</span>、<span class="nowrap">Webアプリ制作</span>、改善相談の3つの入口</h2>
+    <p class="sdesc">新しく作る、業務に合わせて作る、今あるものを直す。<span class="nowrap">初回相談</span>で、どこから始めるのがよいか一緒に整理します。</p>
     <div class="services-grid">
       <div class="scard reveal">
         <div class="scard-icon" aria-hidden="true">Service 01</div>
         <h3 class="scard-name"><span class="nowrap">HP・LP制作</span></h3>
         <p class="scard-desc">
-          サービス紹介、問い合わせ導線、採用、地域検索向けのページを整えます。スマホで読みやすく、相談や申込みにつながる構成を作ります。
+          サービス紹介、<span class="nowrap">問い合わせ導線</span>、採用、地域検索向けのページを整えます。スマホで読みやすく、相談や申込みにつながる構成を作ります。
         </p>
         <div class="tags">
           <span class="badge">LP</span>
@@ -2141,8 +2146,8 @@
 <section id="price">
   <div class="inner reveal">
     <p class="stag">Price</p>
-    <h2 class="stitle">HP・LP制作・Webアプリ制作の料金目安</h2>
-    <p class="sdesc">3つの入口ごとの目安です。実際の範囲は、初回相談で必要な作業を切り分けて確認します。</p>
+    <h2 class="stitle"><span class="nowrap">HP・LP制作</span>・<span class="nowrap">Webアプリ制作</span>の料金目安</h2>
+    <p class="sdesc">3つの入口ごとの目安です。実際の範囲は、<span class="nowrap">初回相談</span>で必要な作業を切り分けて確認します。</p>
     <div class="price-grid">
       <article class="price-card">
         <div class="price-icon" aria-hidden="true">
@@ -2262,7 +2267,7 @@
   <div class="inner">
     <p class="stag">Why <span class="nowrap">Solven合同会社</span></p>
     <h2 class="stitle">選ばれる理由</h2>
-    <p class="sdesc">中小企業のHP・LP制作、Webアプリ制作、既存ツール改善では、最初の整理と公開後の調整が成果を左右します。Solvenは相談から制作、改善まで同じ担当が見ます。</p>
+    <p class="sdesc">中小企業の<span class="nowrap">HP・LP制作</span>、<span class="nowrap">Webアプリ制作</span>、既存ツール改善では、最初の整理と公開後の調整が成果を左右します。Solvenは相談から制作、改善まで同じ担当が見ます。</p>
     <div class="why-grid">
       <div class="why-item reveal">
         <div class="why-num">01</div>
@@ -2279,10 +2284,10 @@
         <div class="why-num">02</div>
         <div class="why-bar"></div>
         <h3 class="why-title"><span class="jp-chunk">集客導線と</span><span class="jp-chunk">業務導線を分けて設計</span></h3>
-        <p class="why-text">HP・LPは問い合わせまでの流れ、Webアプリは日々の作業手順を見て、使う人が迷わない構成にします。</p>
+        <p class="why-text"><span class="nowrap">HP・LP</span>は問い合わせまでの流れ、<span class="nowrap">Webアプリ</span>は日々の作業手順を見て、使う人が迷わない構成にします。</p>
         <ul class="why-points">
           <li>スマホで読まれる順番を重視</li>
-          <li>フォームや問い合わせ導線を整理</li>
+          <li>フォームや<span class="nowrap">問い合わせ導線</span>を整理</li>
           <li>管理画面は現場の入力負担を減らす設計</li>
         </ul>
       </div>
@@ -2305,12 +2310,12 @@
 <section id="works">
   <div class="inner reveal">
     <p class="stag">Works</p>
-    <h2 class="stitle">HP・LP制作・Webアプリ制作の実績・事例</h2>
+    <h2 class="stitle"><span class="nowrap">HP・LP制作</span>・<span class="nowrap">Webアプリ制作</span>の実績・事例</h2>
     <p class="works-note">公開可能な範囲で、業種・課題・対応内容を掲載しています。守秘が必要な案件は、画面そのものではなく構成と改善内容が伝わる形にしています。</p>
     <div class="works-summary" aria-label="対応実績の傾向">
       <div class="works-summary-item">
         <span class="works-summary-label">Business App</span>
-        <p class="works-summary-text">従業員、案件、予約、台帳など、日々の管理をまとめる小規模Webアプリ</p>
+        <p class="works-summary-text">従業員、案件、予約、台帳など、日々の管理をまとめる小規模<span class="nowrap">Webアプリ</span></p>
       </div>
       <div class="works-summary-item">
         <span class="works-summary-label">HP / LP</span>
@@ -2474,10 +2479,10 @@
     <div class="message-wrap">
       <div>
         <blockquote class="message-copy">
-          <p>「私は長年、人材派遣や運送業の管理に<span class="nowrap">携わってきました。</span>日々の確認、入力、<span class="nowrap">連絡には、</span><span class="nowrap">時間がかかりました。</span></p>
-          <p><span class="nowrap">ノーコードのアプリ</span>を導入したこともあります。ただ、細かな調整やアプリ同士の連携で、<span class="nowrap">思うように進まない</span>場面もありました。</p>
-          <p>だからこそ、現場の業務を無理なく効率化する大切さを実感しています。<span class="nowrap">大手システム会社</span>では<span class="nowrap">相談しづらい</span><span class="nowrap">小さな改善</span>にも、<span class="nowrap">迅速かつ適正価格</span>で<span class="nowrap">対応します。</span></p>
-          <p><span class="nowrap">Solven合同会社</span>は、管理業務に悩む会社の力になりたいと考えています。<span class="nowrap">まずは気軽にご相談ください。</span>」</p>
+          <p>「私は長年、人材派遣や運送業の管理に携わってきました。日々の確認、入力、連絡には、時間がかかりました。</p>
+          <p>ノーコードのアプリを導入したこともあります。ただ、細かな調整やアプリ同士の連携で、思うように進まない場面もありました。</p>
+          <p>だからこそ、現場の業務を無理なく効率化する大切さを実感しています。大手システム会社では相談しづらい小さな改善にも、迅速かつ適正価格で対応します。</p>
+          <p><span class="nowrap">Solven合同会社</span>は、管理業務に悩む会社の力になりたいと考えています。まずは気軽にご相談ください。」</p>
         </blockquote>
         <p class="message-sign">代表 / <span class="nowrap">Solven合同会社</span></p>
       </div>
@@ -2489,7 +2494,7 @@
 <section id="faq">
   <div class="inner reveal">
     <p class="stag">FAQ</p>
-    <h2 class="stitle">HP・LP制作・Webアプリ制作のよくある質問</h2>
+    <h2 class="stitle"><span class="nowrap">HP・LP制作</span>・<span class="nowrap">Webアプリ制作</span>のよくある質問</h2>
     <div class="faq-list">
       <div class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">

@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "solven-jp",
     "public": "public",
     "ignore": [
       "firebase.json",
