@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var canonicalHost = "solven.jp";
+      var legacyHosts = ["solven-jp.web.app", "solven-jp.firebaseapp.com"];
+      if (legacyHosts.indexOf(window.location.hostname) !== -1) {
+        window.location.replace("https://" + canonicalHost + window.location.pathname + window.location.search + window.location.hash);
+      }
+    }());
+  </script>
   <title>名古屋・愛知拠点のHP・LP制作・Webアプリ制作 | 全国オンライン対応 | Solven合同会社</title>
   <meta name="description" content="Solven合同会社は名古屋・愛知を拠点に、全国オンライン対応で中小企業のHP・LP制作、Webアプリ制作、既存サイト・既存ツール改善を支援します。現場の課題整理から無料相談できます。">
   <meta name="keywords" content="名古屋 ホームページ制作,愛知 LP制作,愛知 Webアプリ制作,名古屋 業務改善,中小企業 業務効率化,既存サイト 改善">
@@ -12,16 +21,16 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Solven合同会社">
   <meta property="og:locale" content="ja_JP">
-  <meta property="og:url" content="https://solven-jp.web.app/">
-  <meta property="og:image" content="https://solven-jp.web.app/assets/ogp.png">
+  <meta property="og:url" content="https://solven.jp/">
+  <meta property="og:image" content="https://solven.jp/assets/ogp.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Solven合同会社 Web / Workflow Support">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="名古屋・愛知拠点のHP・LP制作・Webアプリ制作 | 全国オンライン対応">
   <meta name="twitter:description" content="名古屋・愛知を拠点に全国オンライン対応。中小企業のHP・LP制作、Webアプリ制作、既存サイト・既存ツール改善を相談できます。">
-  <meta name="twitter:image" content="https://solven-jp.web.app/assets/ogp.png">
-  <link rel="canonical" href="https://solven-jp.web.app/">
+  <meta name="twitter:image" content="https://solven.jp/assets/ogp.png">
+  <link rel="canonical" href="https://solven.jp/">
   <link rel="icon" href="assets/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="assets/icon-512.png">
 
@@ -34,8 +43,8 @@
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Solven合同会社",
-    "url": "https://solven-jp.web.app/",
-    "logo": "https://solven-jp.web.app/assets/icon-512.png",
+    "url": "https://solven.jp/",
+    "logo": "https://solven.jp/assets/icon-512.png",
     "description": "名古屋・愛知を拠点に、全国オンライン対応で中小企業のHP・LP制作、Webアプリ制作、既存サイト・既存ツール改善を支援します。",
     "areaServed": [
       { "@type": "AdministrativeArea", "name": "愛知県" },
@@ -45,7 +54,7 @@
     "priceRange": "¥148,000〜",
     "serviceType": ["HP・LP制作", "Webアプリ制作", "既存サイト・既存ツールの改善", "Webサイト保守"],
     "knowsAbout": ["業務効率化", "顧客管理", "予約管理", "問い合わせ導線", "Web集客", "小規模業務システム"],
-    "sameAs": ["https://solven-jp.web.app/"]
+    "sameAs": ["https://solven.jp/"]
   }
   </script>
 
@@ -731,6 +740,14 @@
     .consult-lead {
       position: sticky;
       top: 110px;
+    }
+    .consult-lead .stitle {
+      font-size: clamp(1.85rem, 3.1vw, 2.55rem);
+      line-height: 1.28;
+      overflow-wrap: anywhere;
+    }
+    .consult-lead .stitle .nowrap {
+      white-space: normal;
     }
     .consult-note {
       margin-top: 1.25rem;
@@ -2637,7 +2654,7 @@
             method="POST">
 
         <input type="hidden" name="_subject" value="【Solven合同会社 HP】お問い合わせが届きました">
-        <input type="hidden" name="_next" value="https://solven-jp.web.app/?success=true">
+        <input type="hidden" name="_next" value="https://solven.jp/?success=true">
 
         <div class="frow">
           <div class="fgroup">

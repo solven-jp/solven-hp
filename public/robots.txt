@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://solven-jp.web.app/sitemap.xml
+Sitemap: https://solven.jp/sitemap.xml
