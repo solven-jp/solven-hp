@@ -41,18 +41,21 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": "Organization",
+    "@id": "https://solven.jp/#organization",
     "name": "Solven合同会社",
     "url": "https://solven.jp/",
     "logo": "https://solven.jp/assets/icon-512.png",
     "description": "名古屋・愛知を拠点に、全国オンライン対応で中小企業のHP・LP制作、Webアプリ制作、既存サイト・既存ツール改善を支援します。",
+    "founder": {
+      "@type": "Person",
+      "name": "岩本 和貴"
+    },
     "areaServed": [
       { "@type": "AdministrativeArea", "name": "愛知県" },
       { "@type": "City", "name": "名古屋市" },
       { "@type": "Country", "name": "日本" }
     ],
-    "priceRange": "¥148,000〜",
-    "serviceType": ["HP・LP制作", "Webアプリ制作", "既存サイト・既存ツールの改善", "Webサイト保守"],
     "knowsAbout": ["業務効率化", "顧客管理", "予約管理", "問い合わせ導線", "Web集客", "小規模業務システム"],
     "sameAs": ["https://solven.jp/"]
   }
@@ -65,18 +68,18 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "相談・見積は無料ですか？",
+        "name": "相談・見積もりは無料ですか？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "はい、初回のご相談・お見積りは無料です。お問い合わせフォームからご連絡ください。"
+          "text": "はい、初回のご相談・お見積もりは無料です。お問い合わせフォームから気軽にご連絡ください。"
         }
       },
       {
         "@type": "Question",
-        "name": "まだ要件が固まっていなくても相談できますか？",
+        "name": "要件が固まっていなくても相談できますか？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "はい。現状の困りごと、使っている表計算や紙の帳票、問い合わせを増やしたいサービス内容だけでも相談できます。初回で課題と進め方を整理します。"
+          "text": "はい。今の困りごとや使っている表計算、紙の帳票が分かる段階でも大丈夫です。初回相談で、課題と進め方を見える形にします。"
         }
       },
       {
@@ -108,7 +111,7 @@
         "name": "契約前にどこまで相談できますか？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "初回相談では、目的整理、概算費用、進め方のご提案まで無料で対応します。詳細設計や制作作業はご契約後に開始します。"
+          "text": "初回相談では、目的の整理、概算費用、進め方のご提案まで無料で対応します。詳細設計や制作作業はご契約後に開始します。"
         }
       }
     ]
@@ -413,6 +416,7 @@
       max-width: 520px;
       margin-bottom: 2.75rem;
       animation: fadeUp .82s cubic-bezier(.22,1,.36,1) .3s both;
+      text-wrap: pretty;
     }
     .hero-actions {
       display: flex;
@@ -427,6 +431,7 @@
       font-size: .84rem;
       line-height: 1.75;
       animation: fadeUp .82s cubic-bezier(.22,1,.36,1) .5s both;
+      text-wrap: pretty;
     }
 
     .hero-visual {
@@ -561,6 +566,7 @@
       color: var(--muted-ink);
       font-size: .86rem;
       line-height: 1.75;
+      text-wrap: pretty;
     }
     .dash-ai strong { color: var(--ink); }
 
@@ -681,6 +687,7 @@
       margin-bottom: 1.25rem;
       word-break: keep-all;
       overflow-wrap: normal;
+      text-wrap: balance;
     }
     .sdesc {
       font-size: .95rem;
@@ -688,6 +695,7 @@
       line-height: 1.85;
       max-width: 560px;
       margin-bottom: 3rem;
+      text-wrap: pretty;
     }
 
     .proof-strip {
@@ -724,6 +732,7 @@
       color: var(--text-1);
       font-size: .9rem;
       line-height: 1.65;
+      text-wrap: pretty;
     }
 
     /* CONSULTATION */
@@ -758,6 +767,7 @@
       color: var(--text-1);
       font-size: .86rem;
       line-height: 1.75;
+      text-wrap: pretty;
     }
     .consult-list {
       display: grid;
@@ -785,11 +795,13 @@
       font-weight: 700;
       margin-bottom: .35rem;
       line-height: 1.55;
+      text-wrap: balance;
     }
     .consult-text {
       color: var(--text-2);
       font-size: .86rem;
       line-height: 1.8;
+      text-wrap: pretty;
     }
 
     /* SERVICES */
@@ -852,6 +864,7 @@
       margin-bottom: .45rem;
       letter-spacing: .03em;
       grid-column: 2;
+      text-wrap: balance;
     }
     .footer-logo,
     .intro-logo,
@@ -867,6 +880,7 @@
       line-height: 1.8;
       margin-bottom: 1rem;
       grid-column: 2;
+      text-wrap: pretty;
     }
     .tags { display: flex; flex-wrap: wrap; gap: .5rem; grid-column: 2; }
     .badge {
@@ -942,6 +956,7 @@
       font-size: 1rem;
       line-height: 1.4;
       margin-bottom: .75rem;
+      text-wrap: balance;
     }
     .price-value {
       font-family: 'Orbitron', sans-serif;
@@ -960,6 +975,7 @@
       color: var(--text-2);
       font-size: .9rem;
       line-height: 1.8;
+      text-wrap: pretty;
     }
     .price-term { margin-bottom: .9rem; }
     .price-term strong { color: var(--text-1); font-weight: 700; }
@@ -981,6 +997,7 @@
       font-size: .88rem;
       line-height: 1.8;
       background: rgba(0,229,204,.035);
+      text-wrap: pretty;
     }
     .price-note strong { color: var(--text-1); }
 
@@ -1061,6 +1078,7 @@
       color: var(--text-1);
       font-size: .95rem;
       line-height: 1.6;
+      text-wrap: balance;
     }
     .decision-list {
       display: grid;
@@ -1255,6 +1273,7 @@
       line-height: 1.65;
       word-break: keep-all;
       overflow-wrap: normal;
+      text-wrap: pretty;
     }
     .works-detail > .detail-label {
       display: block;
@@ -1287,6 +1306,7 @@
       font-size: .88rem;
       line-height: 1.8;
       max-width: 760px;
+      text-wrap: pretty;
     }
     .works-summary {
       display: grid;
@@ -1316,6 +1336,7 @@
       color: var(--ink);
       font-size: .86rem;
       line-height: 1.65;
+      text-wrap: pretty;
     }
     .works-cta {
       margin-top: 1.5rem;
@@ -1332,6 +1353,33 @@
       color: var(--muted-ink);
       font-size: .88rem;
       line-height: 1.7;
+      text-wrap: pretty;
+    }
+    .works-voice {
+      margin-top: 1rem;
+      border-top: 1px solid rgba(0,229,204,.16);
+      padding-top: 1rem;
+    }
+    .works-voice-title {
+      display: block;
+      margin-bottom: .55rem;
+      color: var(--cyan);
+      font-family: 'Orbitron', sans-serif;
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .works-voice-quote {
+      color: var(--ink);
+      font-size: .88rem;
+      line-height: 1.85;
+      text-wrap: pretty;
+    }
+    .works-voice-source {
+      margin-top: .55rem;
+      color: var(--muted-ink);
+      font-size: .78rem;
+      line-height: 1.55;
     }
 
     /* MESSAGE */
@@ -1349,6 +1397,7 @@
       line-height: 2.05;
     }
     .message-copy p + p { margin-top: 1rem; }
+    .message-copy p { text-wrap: pretty; }
     .message-sign {
       margin-top: 1.5rem;
       color: var(--cyan);
@@ -1397,6 +1446,7 @@
       cursor: pointer;
       word-break: keep-all;
       overflow-wrap: normal;
+      text-wrap: balance;
     }
     .faq-arrow {
       color: var(--cyan);
@@ -1411,7 +1461,10 @@
       transition: max-height .32s ease, opacity .24s ease;
     }
     .faq-item.open .faq-answer { opacity: 1; }
-    .faq-answer p { padding: 0 1.25rem 1.15rem; }
+    .faq-answer p {
+      padding: 0 1.25rem 1.15rem;
+      text-wrap: pretty;
+    }
     .faq-contact {
       margin-top: 1.25rem;
       display: flex;
@@ -1427,6 +1480,7 @@
       color: var(--text-2);
       line-height: 1.7;
       font-size: .88rem;
+      text-wrap: pretty;
     }
 
     @media (max-width: 768px) {
@@ -1496,8 +1550,8 @@
       margin-bottom: .75rem;
     }
     .why-bar { width: 50px; height: 2px; background: var(--cyan); margin-bottom: 1.1rem; }
-    .why-title { font-size: 1rem; font-weight: 600; margin-bottom: .6rem; word-break: keep-all; overflow-wrap: normal; }
-    .why-text { font-size: .865rem; color: var(--text-2); line-height: 1.8; }
+    .why-title { font-size: 1rem; font-weight: 600; margin-bottom: .6rem; word-break: keep-all; overflow-wrap: normal; text-wrap: balance; }
+    .why-text { font-size: .865rem; color: var(--text-2); line-height: 1.8; text-wrap: pretty; }
     .why-points {
       display: grid;
       gap: .45rem;
@@ -1559,6 +1613,7 @@
       font-size: .9rem;
       font-weight: 700;
       margin-bottom: .55rem;
+      text-wrap: balance;
     }
     .contact-guide-list {
       display: grid;
@@ -1567,6 +1622,7 @@
       color: var(--text-2);
       font-size: .82rem;
       line-height: 1.7;
+      text-wrap: pretty;
     }
     .contact-guide-list li {
       display: grid;
@@ -1582,6 +1638,7 @@
       background: var(--cyan);
       opacity: .75;
     }
+    .contact-info > p[style] { text-wrap: pretty; }
     .cform { display: flex; flex-direction: column; gap: 1.25rem; }
     .fgroup { display: flex; flex-direction: column; gap: .4rem; }
     .flabel {
@@ -1590,6 +1647,12 @@
       color: var(--text-2);
       letter-spacing: .12em;
       text-transform: uppercase;
+    }
+    .fhelp {
+      color: var(--text-2);
+      font-size: .78rem;
+      line-height: 1.6;
+      text-wrap: pretty;
     }
     .fctrl {
       background: rgba(255,255,255,.03);
@@ -1637,6 +1700,12 @@
       color: var(--text-2);
       font-size: .8rem;
       line-height: 1.65;
+    }
+    @media (max-width: 768px) {
+      .quick-select,
+      .form-assurance {
+        grid-template-columns: 1fr;
+      }
     }
     .form-assurance {
       display: grid;
@@ -1709,6 +1778,7 @@
       font-size: .92rem;
       line-height: 1.75;
       overflow-wrap: break-word;
+      text-wrap: pretty;
     }
 
     /* FOOTER */
@@ -1738,7 +1808,7 @@
       color: var(--text-3);
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1280px) {
       .hero { align-items: flex-start; flex-direction: column; justify-content: center; }
       .hero-visual { width: min(100%, 520px); min-width: 0; }
       .consult-grid { grid-template-columns: 1fr; }
@@ -2017,13 +2087,13 @@
     </h1>
     <p class="hero-sub">
       名古屋・愛知を拠点に、全国オンライン対応で中小企業の<span class="nowrap">問い合わせ導線</span>、予約・顧客管理、
-      <span class="nowrap">Excel管理</span>を整理。<span class="nowrap">HP・LP制作</span>・<span class="nowrap">Webアプリ制作</span>・既存サイトや既存ツールの改善まで伴走します。
+      <span class="nowrap">Excel管理</span>を見直します。<span class="nowrap">HP・LP制作</span>、<span class="nowrap">Webアプリ制作</span>、既存サイトや既存ツールの改善まで、現場に合う形へ組み立てます。
     </p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">業務の悩みを相談する →</a>
       <a href="#consultation" class="btn-ghost">相談できる内容を見る</a>
     </div>
-    <p class="hero-note">現状と困りごとだけでOK。初回相談で、優先順位・概算費用・進め方を整理します。</p>
+    <p class="hero-note">現状と困りごとだけでOK。初回相談では、何から着手するか、概算費用と進め方まで一緒に固めます。</p>
   </div>
   <div class="hero-visual" aria-hidden="true">
     <div class="dash-shell">
@@ -2046,7 +2116,7 @@
         </div>
         <div class="dash-panel wide">
           <p class="dash-label">Solven合同会社の進め方</p>
-          <p class="dash-ai"><strong>派手な演出より、現場で使える導線づくりを優先します。</strong> <span class="nowrap">HP・LP</span>、<span class="nowrap">Webアプリ</span>、既存サイトや既存ツールの改善まで一つの流れで整理します。</p>
+          <p class="dash-ai"><strong>派手な演出より、現場で使える導線づくりを優先します。</strong> <span class="nowrap">HP・LP</span>、<span class="nowrap">Webアプリ</span>、既存サイトや既存ツールの改善まで、同じ窓口で見極めます。</p>
         </div>
       </div>
     </div>
@@ -2065,11 +2135,11 @@
     </div>
     <div class="proof-item">
       <span class="proof-label">Workflow</span>
-      <p class="proof-text"><span class="nowrap">Excel管理</span>、予約、顧客対応、<span class="nowrap">問い合わせ導線</span>を整理します。</p>
+      <p class="proof-text"><span class="nowrap">Excel管理</span>、予約、顧客対応、<span class="nowrap">問い合わせ導線</span>の詰まりを洗い出します。</p>
     </div>
     <div class="proof-item">
       <span class="proof-label">Aftercare</span>
-      <p class="proof-text">公開後の修正・改善・保守まで、必要な範囲で継続対応します。</p>
+      <p class="proof-text">公開後の修正・改善・保守も、状況に合わせて続けられます。</p>
     </div>
   </div>
 </div>
@@ -2080,28 +2150,28 @@
     <div class="consult-lead reveal">
       <p class="stag">Consultation</p>
       <h2 class="stitle"><span class="jp-chunk">名古屋・愛知拠点、</span><span class="jp-chunk">全国オンライン対応の</span><span class="nowrap">業務改善相談</span></h2>
-      <p class="sdesc">システム化する前の段階から相談できます。今の管理方法、困っている作業、予算感を聞いたうえで、<span class="nowrap">Webアプリ</span>を作るべきか、<span class="nowrap">HP・LP</span>の導線を整えるべきか、既存サイトや既存ツールの改善で足りるかを整理します。</p>
+      <p class="sdesc">システム化する前の段階から相談できます。今の管理方法、困っている作業、予算感を聞いたうえで、<span class="nowrap">Webアプリ</span>を作るべきか、<span class="nowrap">HP・LP</span>の導線を整えるべきか、既存サイトや既存ツールの見直しで足りるかを見極めます。</p>
       <p class="consult-note">初回で無理に開発へ進めません。小さな改善で済むもの、既存ツールで足りるもの、制作した方が良いものを分けて提案します。</p>
     </div>
     <div class="consult-list">
       <article class="consult-item reveal">
         <span class="consult-kicker">Case 01</span>
         <div>
-          <h3 class="consult-title">Excel・紙・LINEで分散した管理を整理したい</h3>
-          <p class="consult-text">顧客、予約、スタッフ、案件、証明書などの情報を、どこまで一元化すべきか一緒に整理します。</p>
+          <h3 class="consult-title"><span class="jp-chunk">Excel・紙・LINEで分散した管理を</span><span class="jp-chunk">整理したい</span></h3>
+          <p class="consult-text">顧客、予約、スタッフ、案件、証明書などの情報を、どこまで一元化するか一緒に決めます。</p>
         </div>
       </article>
       <article class="consult-item reveal" style="transition-delay:.08s">
         <span class="consult-kicker">Case 02</span>
         <div>
-          <h3 class="consult-title">問い合わせを増やす前に、HPやLPの導線を見直したい</h3>
+          <h3 class="consult-title"><span class="jp-chunk">問い合わせを増やす前に、</span><span class="jp-chunk">HPやLPの導線を見直したい</span></h3>
           <p class="consult-text">地域検索、サービス説明、フォーム、スマホ表示を確認し、相談につながる1ページ構成を設計します。</p>
         </div>
       </article>
       <article class="consult-item reveal" style="transition-delay:.16s">
         <span class="consult-kicker">Case 03</span>
         <div>
-          <h3 class="consult-title">小規模な業務アプリを、予算内で段階的に作りたい</h3>
+          <h3 class="consult-title"><span class="jp-chunk">小規模な業務アプリを、</span><span class="jp-chunk">予算内で段階的に作りたい</span></h3>
           <p class="consult-text">最初から全部作らず、台帳管理、ステータス管理、通知、集計など優先度の高い機能から始めます。</p>
         </div>
       </article>
@@ -2113,8 +2183,8 @@
 <section id="services">
   <div class="inner">
     <p class="stag">Services</p>
-    <h2 class="stitle"><span class="nowrap">HP・LP制作</span>、<span class="nowrap">Webアプリ制作</span>、改善相談の3つの入口</h2>
-    <p class="sdesc">新しく作る、業務に合わせて作る、今あるものを直す。<span class="nowrap">初回相談</span>で、どこから始めるのがよいか一緒に整理します。</p>
+    <h2 class="stitle"><span class="jp-chunk"><span class="nowrap">HP・LP制作</span>、<span class="nowrap">Webアプリ制作</span>、</span><span class="jp-chunk">改善相談の3つの入口</span></h2>
+    <p class="sdesc">新しく作る、業務に合わせて作る、今あるものを直す。<span class="nowrap">初回相談</span>で、どこから始めるのがよいか一緒に見極めます。</p>
     <div class="services-grid">
       <div class="scard reveal">
         <div class="scard-icon" aria-hidden="true">Service 01</div>
@@ -2131,9 +2201,9 @@
       </div>
       <div class="scard reveal" style="transition-delay:.12s">
         <div class="scard-icon" aria-hidden="true">Service 02</div>
-        <h3 class="scard-name"><span class="nowrap">Webアプリ制作</span></h3>
+        <h3 class="scard-name"><span class="nowrap">業務自動化・Webアプリ制作</span></h3>
         <p class="scard-desc">
-          予約、顧客管理、案件管理、台帳管理など、現場の業務に合わせた小規模アプリを作ります。必要な機能から段階的に進めます。
+          帳票、通知、顧客管理、案件管理など、現場の業務に合わせて小さく自動化します。ログインや権限が必要なWebアプリは、要件を確認して段階的に進めます。
         </p>
         <div class="tags">
           <span class="badge">予約管理</span>
@@ -2163,7 +2233,7 @@
 <section id="price">
   <div class="inner reveal">
     <p class="stag">Price</p>
-    <h2 class="stitle"><span class="nowrap">HP・LP制作</span>・<span class="nowrap">Webアプリ制作</span>の料金目安</h2>
+    <h2 class="stitle"><span class="jp-chunk"><span class="nowrap">HP・LP制作</span>・<span class="nowrap">Webアプリ制作</span>の</span><span class="jp-chunk">料金目安</span></h2>
     <p class="sdesc">3つの入口ごとの目安です。実際の範囲は、<span class="nowrap">初回相談</span>で必要な作業を切り分けて確認します。</p>
     <div class="price-grid">
       <article class="price-card">
@@ -2177,7 +2247,7 @@
         <span class="price-fit">サービス紹介・地域検索・問い合わせ向け</span>
         <p class="price-value">¥148,000〜</p>
         <p class="price-term">納期2〜3週間</p>
-        <p class="price-features">1ページ<span class="nowrap">LP</span>から会社サイトまで。スマホ対応、フォーム、SEO基本設定を含みます。</p>
+        <p class="price-features">1ページ<span class="nowrap">LP</span>から会社サイトまで対応。スマホ対応、フォーム、SEO基本設定を含みます。</p>
       </article>
       <article class="price-card">
         <div class="price-icon" aria-hidden="true">
@@ -2186,11 +2256,11 @@
             <path d="M17 20h4M27 20h4M17 28h4M27 28h4M17 40v-6h14v6" stroke="#00e5cc" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </div>
-        <h3 class="price-name"><span class="nowrap">Webアプリ制作</span></h3>
-        <span class="price-fit">予約・顧客・案件・台帳管理向け</span>
-        <p class="price-value">¥198,000〜</p>
-        <p class="price-term"><strong><span class="nowrap">小規模</span>は3週間〜</strong><br><span class="nowrap">本格業務システム</span>は2〜3ヶ月</p>
-        <p class="price-features">予約管理・問い合わせ管理などの小規模機能から、業務システムまで対応します。</p>
+        <h3 class="price-name"><span class="nowrap">業務自動化・ミニツール</span></h3>
+        <span class="price-fit">1つの定型業務・帳票・通知向け</span>
+        <p class="price-value">¥198,000〜398,000</p>
+        <p class="price-term"><strong><span class="nowrap">小規模</span>は3週間〜</strong><br><span class="nowrap">Webアプリ</span>は¥598,000〜</p>
+        <p class="price-features">簡易入力、一覧、帳票、通知、スプレッドシート連携など。ログイン・権限・予約・決済・外部APIは要件確認後に見積もります。</p>
       </article>
       <article class="price-card">
         <div class="price-icon" aria-hidden="true">
@@ -2206,7 +2276,7 @@
         <p class="price-features">文言修正、導線改善、フォーム調整、管理表や既存ツールの項目整理に対応します。</p>
       </article>
     </div>
-    <p class="price-note"><strong>金額は目安です。</strong> 原稿量、ページ数、フォーム、CMS、予約/管理機能、既存環境の状態で変動します。初回相談で「今やる範囲」と「次フェーズに回す範囲」を切り分けて確認します。</p>
+    <p class="price-note"><strong>金額は税別の目安です。</strong> 原稿量、ページ数、フォーム、CMS、認証、権限、予約、決済、外部サービス連携、既存環境の状態で変動します。契約前に作業範囲と総額を提示し、合意なく追加請求することはありません。</p>
   </div>
 </section>
 
@@ -2226,7 +2296,7 @@
         </div>
         <h3 class="process-title">ヒアリング</h3>
         <span class="process-duration">初回30〜60分</span>
-        <p class="process-text">ご要望・目的・予算・納期をヒアリングします。オンライン対応可。</p>
+        <p class="process-text">ご要望・目的・予算・納期をヒアリングします。オンラインでも対応します。</p>
       </article>
       <div class="process-arrow" aria-hidden="true"><span>→</span></div>
       <article class="process-step">
@@ -2272,7 +2342,7 @@
       <p class="decision-title">迷ったときは、小さく公開してから改善する進め方も選べます。</p>
       <ul class="decision-list">
         <li><span><span class="nowrap">LP</span>：<span class="nowrap">問い合わせ導線</span>と公開速度を優先</span></li>
-        <li><span><span class="nowrap">コーポレートサイト</span>：信頼情報と<span class="nowrap">運営者情報</span>を優先</span></li>
+        <li><span><span class="nowrap">会社サイト</span>：信頼情報と<span class="nowrap">運営者情報</span>を優先</span></li>
         <li><span><span class="nowrap">Webアプリ</span>：日常業務で最も負担の大きい作業から着手</span></li>
       </ul>
     </div>
@@ -2304,7 +2374,7 @@
         <p class="why-text"><span class="nowrap">HP・LP</span>は問い合わせまでの流れ、<span class="nowrap">Webアプリ</span>は日々の作業手順を見て、使う人が迷わない構成にします。</p>
         <ul class="why-points">
           <li>スマホで読まれる順番を重視</li>
-          <li>フォームや<span class="nowrap">問い合わせ導線</span>を整理</li>
+          <li>フォームと<span class="nowrap">問い合わせ導線</span>を整理</li>
           <li>管理画面は現場の入力負担を減らす設計</li>
         </ul>
       </div>
@@ -2312,7 +2382,7 @@
         <div class="why-num">03</div>
         <div class="why-bar"></div>
         <h3 class="why-title"><span class="jp-chunk">公開後の修正や</span><span class="jp-chunk">小さな改善も相談できる</span></h3>
-        <p class="why-text">公開して終わりではなく、文言修正、フォーム調整、機能追加、保守まで必要な範囲で継続対応します。</p>
+        <p class="why-text">公開して終わりではなく、文言修正、フォーム調整、機能追加、保守まで必要なところへ継続して手を入れます。</p>
         <ul class="why-points">
           <li>文言・表示崩れ・フォーム調整に対応</li>
           <li>使いながら出た要望を次の改善に反映</li>
@@ -2323,11 +2393,26 @@
   </div>
 </section>
 
+<!-- MESSAGE -->
+<section id="message">
+  <div class="inner reveal">
+    <div class="message-wrap">
+      <div>
+        <blockquote class="message-copy">
+          <p>「現場の管理業務では、日々の確認、入力、連絡に想像以上の時間がかかります。ノーコードのアプリを導入しても、細かな調整や連携で思うように進まない場面があります。</p>
+          <p>だからこそ、Solven合同会社は最初に作る範囲を絞り、小さな改善から現場に合う形へ整えます。大手には相談しづらい小さな改善も、代表が責任を持って対応します。」</p>
+        </blockquote>
+        <p class="message-sign">代表 / <span class="nowrap">Solven合同会社</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- WORKS -->
 <section id="works">
   <div class="inner reveal">
     <p class="stag">Works</p>
-    <h2 class="stitle"><span class="nowrap">HP・LP制作</span>・<span class="nowrap">Webアプリ制作</span>の実績・事例</h2>
+    <h2 class="stitle"><span class="jp-chunk"><span class="nowrap">HP・LP制作</span>・<span class="nowrap">Webアプリ制作</span>の</span><span class="jp-chunk">実績・事例</span></h2>
     <p class="works-note">公開可能な範囲で、業種・課題・対応内容を掲載しています。守秘が必要な案件は、画面そのものではなく構成と改善内容が伝わる形にしています。</p>
     <div class="works-summary" aria-label="対応実績の傾向">
       <div class="works-summary-item">
@@ -2344,7 +2429,7 @@
       </div>
     </div>
     <div class="works-grid">
-      <article class="works-card">
+      <article class="works-card" data-case-id="employee-management-app">
         <div class="works-image work-mock" aria-hidden="true">
           <div class="mock-top">
             <div class="mock-dots"><span></span><span></span><span></span></div>
@@ -2367,14 +2452,14 @@
         </div>
         <span class="works-badge"><span class="nowrap">Webアプリ</span></span>
         <h3 class="works-title"><span class="nowrap">人材派遣業</span> <span class="nowrap">従業員管理システム</span></h3>
-        <p class="works-meta">従業員情報・雇用契約・有給管理・資格証明書を一元管理</p>
+        <p class="works-meta"><span class="jp-chunk">従業員情報・雇用契約・</span><span class="jp-chunk">有給管理・資格証明書を一元管理</span></p>
         <div class="works-details">
           <p class="works-detail"><span class="detail-label">課題</span>紙・表計算での更新漏れと確認にかかる工数</p>
           <p class="works-detail"><span class="detail-label">対応</span>台帳、契約、証明書管理を一画面に集約</p>
           <p class="works-detail"><span class="detail-label">成果</span>確認作業を標準化し、担当者の引き継ぎを容易に</p>
         </div>
       </article>
-      <article class="works-card">
+      <article class="works-card" data-case-id="dispatch-management-app">
         <div class="works-image work-mock" aria-hidden="true">
           <div class="mock-top">
             <div class="mock-dots"><span></span><span></span><span></span></div>
@@ -2400,7 +2485,7 @@
           <p class="works-detail"><span class="detail-label">成果</span>確認・更新の流れを統一し、日次運用を短縮</p>
         </div>
       </article>
-      <article class="works-card">
+      <article class="works-card" data-case-id="real-estate-crm">
         <div class="works-image work-mock" aria-hidden="true">
           <div class="mock-top">
             <div class="mock-dots"><span></span><span></span><span></span></div>
@@ -2419,14 +2504,14 @@
         </div>
         <span class="works-badge"><span class="nowrap">Webアプリ</span></span>
         <h3 class="works-title"><span class="nowrap">不動産業</span> <span class="nowrap">案件管理システム</span></h3>
-        <p class="works-meta">物件情報・顧客対応・商談進捗を一元管理</p>
+        <p class="works-meta"><span class="jp-chunk">物件情報・顧客対応・</span><span class="jp-chunk">商談進捗を一元管理</span></p>
         <div class="works-details">
           <p class="works-detail"><span class="detail-label">課題</span>案件進捗と顧客対応履歴が分散</p>
           <p class="works-detail"><span class="detail-label">対応</span>物件、顧客、商談ステータスを統合</p>
           <p class="works-detail"><span class="detail-label">成果</span>対応漏れを防ぎ、営業状況を見える化</p>
         </div>
       </article>
-      <article class="works-card">
+      <article class="works-card" data-case-id="real-estate-lp">
         <div class="works-image work-mock" aria-hidden="true">
           <div class="mock-top">
             <div class="mock-dots"><span></span><span></span><span></span></div>
@@ -2456,7 +2541,7 @@
           <p class="works-detail"><span class="detail-label">成果</span>サービス内容と相談導線を1ページに集約</p>
         </div>
       </article>
-      <article class="works-card">
+      <article class="works-card" data-case-id="staffing-company-site">
         <div class="works-image work-mock" aria-hidden="true">
           <div class="mock-top">
             <div class="mock-dots"><span></span><span></span><span></span></div>
@@ -2473,9 +2558,9 @@
             </div>
           </div>
         </div>
-        <span class="works-badge">コーポレート</span>
-        <h3 class="works-title"><span class="nowrap">人材派遣会社</span> <span class="nowrap">コーポレートサイト</span></h3>
-        <p class="works-meta">人材派遣会社 コーポレートサイト / 企業向け・求職者向け2動線設計</p>
+        <span class="works-badge">会社サイト</span>
+        <h3 class="works-title"><span class="nowrap">人材派遣会社</span> <span class="nowrap">会社サイト</span></h3>
+        <p class="works-meta">人材派遣会社 会社サイト / 企業向け・求職者向け2動線設計</p>
         <div class="works-details">
           <p class="works-detail"><span class="detail-label">課題</span>企業向けと求職者向け情報が混在</p>
           <p class="works-detail"><span class="detail-label">対応</span>閲覧者別に導線を整理し、問い合わせを分離</p>
@@ -2484,25 +2569,8 @@
       </article>
     </div>
     <div class="works-cta">
-      <p>近い業種や似た課題があれば、今の管理方法を聞いたうえで、HP・LP、Webアプリ、既存ツール改善のどれが合うか整理します。</p>
+      <p>近い業種や似た課題があれば、今の管理方法を聞いたうえで、HP・LP、Webアプリ、既存ツール改善のどれが合うか見極めます。</p>
       <a href="#contact" class="btn-ghost">似た課題を相談する</a>
-    </div>
-  </div>
-</section>
-
-<!-- MESSAGE -->
-<section id="message">
-  <div class="inner reveal">
-    <div class="message-wrap">
-      <div>
-        <blockquote class="message-copy">
-          <p>「私は長年、人材派遣や運送業の管理に携わってきました。日々の確認、入力、連絡には、時間がかかりました。</p>
-          <p>ノーコードのアプリを導入したこともあります。ただ、細かな調整やアプリ同士の連携で、思うように進まない場面もありました。</p>
-          <p>だからこそ、現場の業務を無理なく効率化する大切さを実感しています。大手システム会社では相談しづらい小さな改善にも、迅速かつ適正価格で対応します。</p>
-          <p><span class="nowrap">Solven合同会社</span>は、管理業務に悩む会社の力になりたいと考えています。まずは気軽にご相談ください。」</p>
-        </blockquote>
-        <p class="message-sign">代表 / <span class="nowrap">Solven合同会社</span></p>
-      </div>
     </div>
   </div>
 </section>
@@ -2515,25 +2583,25 @@
     <div class="faq-list">
       <div class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
-          <span class="jp-chunk">相談・見積は無料ですか？</span>
+          <span class="jp-chunk">相談・見積もりは</span><span class="jp-chunk">無料ですか？</span>
           <span class="faq-arrow" aria-hidden="true">▶</span>
         </button>
         <div class="faq-answer">
-          <p>はい、初回のご相談・お見積りは無料です。お気軽にお問い合わせフォームからご連絡ください。</p>
+          <p>はい、初回のご相談・お見積もりは無料です。お問い合わせフォームから気軽にご連絡ください。</p>
         </div>
       </div>
       <div class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
-          <span class="jp-chunk">まだ要件が固まっていなくても相談できますか？</span>
+          <span class="jp-chunk">要件が固まっていなくても</span><span class="jp-chunk">相談できますか？</span>
           <span class="faq-arrow" aria-hidden="true">▶</span>
         </button>
         <div class="faq-answer">
-          <p>はい。現状の困りごと、使っている表計算や紙の帳票、問い合わせを増やしたいサービス内容だけでも相談できます。初回で課題と進め方を整理します。</p>
+          <p>はい。今の困りごとや使っている表計算、紙の帳票が分かる段階でも大丈夫です。初回相談で、課題と進め方を見える形にします。</p>
         </div>
       </div>
       <div class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
-          <span class="jp-chunk">納品後のサポートはありますか？</span>
+          <span class="jp-chunk">納品後のサポートは</span><span class="jp-chunk">ありますか？</span>
           <span class="faq-arrow" aria-hidden="true">▶</span>
         </button>
         <div class="faq-answer">
@@ -2542,7 +2610,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
-          <span class="jp-chunk">名古屋・愛知以外でも依頼できますか？</span>
+          <span class="jp-chunk">名古屋・愛知以外でも</span><span class="jp-chunk">依頼できますか？</span>
           <span class="faq-arrow" aria-hidden="true">▶</span>
         </button>
         <div class="faq-answer">
@@ -2551,7 +2619,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
-          <span class="jp-chunk">どれくらいの期間で制作できますか？</span>
+          <span class="jp-chunk">どれくらいの期間で</span><span class="jp-chunk">制作できますか？</span>
           <span class="faq-arrow" aria-hidden="true">▶</span>
         </button>
         <div class="faq-answer">
@@ -2560,16 +2628,16 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
-          <span class="jp-chunk">契約前にどこまで相談できますか？</span>
+          <span class="jp-chunk">契約前にどこまで</span><span class="jp-chunk">相談できますか？</span>
           <span class="faq-arrow" aria-hidden="true">▶</span>
         </button>
         <div class="faq-answer">
-          <p>初回相談では、目的整理・概算費用・進め方のご提案まで無料で対応します。詳細設計や制作作業はご契約後に開始します。</p>
+          <p>初回相談では、目的の整理、概算費用、進め方のご提案まで無料で対応します。詳細設計や制作作業はご契約後に開始します。</p>
         </div>
       </div>
       <div class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
-          <span>支払い方法は？</span>
+          <span class="jp-chunk">支払い方法は？</span>
           <span class="faq-arrow" aria-hidden="true">▶</span>
         </button>
         <div class="faq-answer">
@@ -2633,7 +2701,7 @@
           </div>
         </div>
         <div class="contact-guide">
-          <p class="contact-guide-title">まだ整理できていなくても大丈夫です</p>
+          <p class="contact-guide-title"><span class="jp-chunk">内容が固まっていなくても</span><span class="jp-chunk">大丈夫です</span></p>
           <ul class="contact-guide-list">
             <li>今の管理方法や使っているツール</li>
             <li>困っている作業や増やしたい問い合わせ</li>
@@ -2670,6 +2738,12 @@
         <div class="fgroup">
           <label class="flabel" for="email">メールアドレス <span style="color:var(--cyan)">*</span></label>
           <input class="fctrl" type="email" id="email" name="email" placeholder="メールアドレス" required>
+        </div>
+
+        <div class="fgroup">
+          <label class="flabel" for="phone">電話番号 <span style="color:var(--text-2)">任意</span></label>
+          <input class="fctrl" type="tel" id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="090-0000-0000">
+          <p class="fhelp">電話番号は任意です。メールでの返信も可能です。</p>
         </div>
 
         <div class="fgroup">
@@ -2733,7 +2807,7 @@
     <div class="company-grid">
       <div class="company-item">
         <span class="company-label">取得する情報</span>
-        <p class="company-value">会社名、お名前、メールアドレス、お問い合わせ内容、検討中のサービス</p>
+        <p class="company-value">会社名、お名前、メールアドレス、電話番号（任意）、お問い合わせ内容、検討中のサービス</p>
       </div>
       <div class="company-item">
         <span class="company-label">利用目的</span>
@@ -2763,6 +2837,81 @@
 
 <script>
   document.body.classList.add('js-ready');
+
+  const supportCases = [
+    {
+      id: 'employee-management-app',
+      category: 'web_app',
+      industry: '人材派遣業',
+      title: '従業員管理システム',
+      voices: []
+    },
+    {
+      id: 'dispatch-management-app',
+      category: 'web_app',
+      industry: '人材派遣業',
+      title: '派遣管理システム',
+      voices: []
+    },
+    {
+      id: 'real-estate-crm',
+      category: 'web_app',
+      industry: '不動産業',
+      title: '案件管理システム',
+      voices: []
+    },
+    {
+      id: 'real-estate-lp',
+      category: 'hp_lp',
+      industry: '不動産業',
+      title: 'LP制作',
+      voices: []
+    },
+    {
+      id: 'staffing-company-site',
+      category: 'hp_lp',
+      industry: '人材派遣業',
+      title: '会社サイト',
+      voices: []
+    }
+  ];
+
+  const approvedVoices = (item) => {
+    return (item.voices || []).filter(voice => {
+      return voice.status === 'approved' && voice.permissionConfirmed === true;
+    });
+  };
+
+  const renderWorksVoices = () => {
+    const casesById = new Map(supportCases.map(item => [item.id, item]));
+    document.querySelectorAll('.works-card[data-case-id]').forEach(card => {
+      const item = casesById.get(card.dataset.caseId);
+      const voices = item ? approvedVoices(item) : [];
+      if (!voices.length) return;
+
+      const wrap = document.createElement('div');
+      wrap.className = 'works-voice';
+      wrap.innerHTML = '<span class="works-voice-title">お客様の声</span>';
+
+      voices.forEach(voice => {
+        const quote = document.createElement('blockquote');
+        quote.className = 'works-voice-quote';
+        quote.textContent = `「${voice.quote}」`;
+        wrap.appendChild(quote);
+
+        if (voice.displayName) {
+          const source = document.createElement('p');
+          source.className = 'works-voice-source';
+          source.textContent = voice.displayName;
+          wrap.appendChild(source);
+        }
+      });
+
+      card.appendChild(wrap);
+    });
+  };
+
+  renderWorksVoices();
 
   const intro = document.getElementById('siteIntro');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
