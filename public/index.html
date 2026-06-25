@@ -1926,9 +1926,10 @@
       .hero-title .hl,
       .jp-chunk {
         white-space: normal;
-        word-break: normal;
-        overflow-wrap: anywhere;
-        hyphens: auto;
+        word-break: keep-all;
+        overflow-wrap: normal;
+        line-break: strict;
+        hyphens: none;
       }
       .nowrap {
         white-space: nowrap;
@@ -1939,8 +1940,9 @@
       .stitle {
         font-size: clamp(1.52rem, 7.6vw, 2.05rem);
         line-height: 1.32;
-        word-break: normal;
-        overflow-wrap: anywhere;
+        word-break: keep-all;
+        overflow-wrap: normal;
+        line-break: strict;
       }
       .stag,
       .scard-name,
@@ -1951,8 +1953,9 @@
       .faq-q,
       .company-label,
       .company-value {
-        word-break: normal;
-        overflow-wrap: anywhere;
+        word-break: keep-all;
+        overflow-wrap: normal;
+        line-break: strict;
       }
       .btn-primary,
       .btn-ghost {
@@ -1983,8 +1986,9 @@
         gap: .7rem;
       }
       .works-detail {
-        word-break: normal;
-        overflow-wrap: anywhere;
+        word-break: keep-all;
+        overflow-wrap: normal;
+        line-break: strict;
       }
       .hero-visual { display: none; }
       .company-grid { grid-template-columns: 1fr; }
@@ -2275,7 +2279,7 @@
         </div>
         <div class="service-link-row">
           <a href="/homepage-production">ホームページ制作</a>
-          <a href="/lp-production">LP制作</a>
+          <a href="/lp-production"><span class="nowrap">LP制作</span></a>
         </div>
       </div>
       <div class="scard reveal" style="transition-delay:.12s">
@@ -2923,7 +2927,7 @@
   <span class="footer-logo">Solven合同会社</span>
   <span class="footer-links">
     <a href="/homepage-production">HP制作</a>
-    <a href="/lp-production">LP制作</a>
+    <a href="/lp-production"><span class="nowrap">LP制作</span></a>
     <a href="/web-app-development"><span class="nowrap">Webアプリ制作</span></a>
     <a href="/maintenance">保守</a>
     <a href="#company"><span class="nowrap">運営者情報</span></a>

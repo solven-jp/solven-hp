@@ -11,7 +11,10 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
 
 body {
   margin: 0;
@@ -19,9 +22,14 @@ body {
   color: var(--text);
   font-family: "Outfit", "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.8;
+  overflow-x: clip;
 }
 
 a { color: inherit; }
+
+.nowrap {
+  white-space: nowrap;
+}
 
 .site-header,
 .site-footer {
@@ -103,6 +111,9 @@ h1 {
   font-size: clamp(2.2rem, 4vw, 4.7rem);
   line-height: 1.08;
   letter-spacing: 0;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-break: strict;
 }
 
 h2 {
@@ -110,6 +121,9 @@ h2 {
   font-size: clamp(1.65rem, 2.4vw, 2.6rem);
   line-height: 1.24;
   letter-spacing: 0;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-break: strict;
 }
 
 h3 {
@@ -117,12 +131,18 @@ h3 {
   font-size: 1.12rem;
   line-height: 1.45;
   letter-spacing: 0;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-break: strict;
 }
 
 .lead {
   max-width: 780px;
   color: var(--muted);
   font-size: 1.08rem;
+  word-break: normal;
+  overflow-wrap: break-word;
+  line-break: strict;
 }
 
 .hero-actions,
@@ -173,6 +193,11 @@ h3 {
 }
 
 .card.alt { background: var(--panel-2); }
+
+.card h2 {
+  font-size: clamp(1.34rem, 2vw, 1.72rem);
+  line-height: 1.34;
+}
 
 .card p,
 .section-copy,
@@ -227,6 +252,13 @@ h3 {
   margin-bottom: 1rem;
   color: var(--muted);
   font-size: .92rem;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-break: strict;
+}
+
+.title-line {
+  display: block;
 }
 
 .case-meta {
@@ -272,4 +304,37 @@ h3 {
   }
 
   .hero { padding-top: 44px; }
+}
+
+@media (max-width: 480px) {
+  .nav,
+  .footer-inner,
+  .section-inner {
+    width: min(100% - 32px, 1120px);
+  }
+
+  h1 {
+    font-size: clamp(1.86rem, 8.4vw, 2.08rem);
+    line-height: 1.16;
+  }
+
+  h2 {
+    font-size: clamp(1.38rem, 6.2vw, 1.58rem);
+    line-height: 1.3;
+  }
+
+  .card h2 {
+    font-size: clamp(1.3rem, 5.9vw, 1.48rem);
+    line-height: 1.36;
+  }
+
+  .lead {
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+  }
 }
