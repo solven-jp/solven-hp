@@ -62,6 +62,16 @@ These require Google account or external profile operation:
   - Clicks
   - Average position
 
+## Search Console Status
+
+Checked: 2026-06-25
+
+- Property `solven.jp`: accessible in Search Console.
+- Sitemap `https://solven.jp/sitemap.xml`: submitted, last read 2026/06/25, status successful, 9 pages detected.
+- URL Inspection `https://solven.jp/`: indexed, HTTPS valid.
+- URL Inspection `https://solven.jp/homepage-production`: indexed, HTTPS valid, breadcrumb valid.
+- Summary reports: performance and indexing data are still processing; recheck after data is available.
+
 ## 90-Day Review Plan
 
 - Week 0: Deploy after approval, submit sitemap, request indexing for top priority pages.
