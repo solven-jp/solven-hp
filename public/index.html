@@ -1325,7 +1325,7 @@
       font-size: .82rem;
       line-height: 1.65;
       word-break: keep-all;
-      overflow-wrap: normal;
+      overflow-wrap: anywhere;
       text-wrap: pretty;
     }
     .works-detail > .detail-label {
@@ -1965,6 +1965,27 @@
       }
       .consult-item { grid-template-columns: 1fr; gap: .45rem; }
       .process-timeline { grid-template-columns: 1fr; }
+      .works-image {
+        aspect-ratio: 4 / 3;
+        margin-bottom: 1rem;
+      }
+      .work-mock {
+        padding: .8rem;
+      }
+      .mock-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+      .mock-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .works-details {
+        gap: .7rem;
+      }
+      .works-detail {
+        word-break: normal;
+        overflow-wrap: anywhere;
+      }
       .hero-visual { display: none; }
       .company-grid { grid-template-columns: 1fr; }
       footer { padding-bottom: 6rem; }
@@ -2270,8 +2291,8 @@
           <span class="badge">段階開発</span>
         </div>
         <div class="service-link-row">
-          <a href="/web-app-development">Webアプリ制作</a>
-          <a href="/business-improvement">業務改善</a>
+          <a href="/web-app-development"><span class="nowrap">Webアプリ制作</span></a>
+          <a href="/business-improvement"><span class="nowrap">業務改善</span></a>
         </div>
       </div>
       <div class="scard reveal" style="transition-delay:.24s">
@@ -2903,9 +2924,9 @@
   <span class="footer-links">
     <a href="/homepage-production">HP制作</a>
     <a href="/lp-production">LP制作</a>
-    <a href="/web-app-development">Webアプリ制作</a>
+    <a href="/web-app-development"><span class="nowrap">Webアプリ制作</span></a>
     <a href="/maintenance">保守</a>
-    <a href="#company">運営者情報</a>
+    <a href="#company"><span class="nowrap">運営者情報</span></a>
     <a href="#privacy">プライバシーポリシー</a>
   </span>
   <span class="footer-copy">© 2026 Solven合同会社. All rights reserved.</span>
@@ -2913,6 +2934,82 @@
 
 <script>
   document.body.classList.add('js-ready');
+
+  const supportCases = [
+    {
+      id: 'employee-management-app',
+      voices: [
+        {
+          quote: 'Excelで管理していた頃に比べて、従業員情報の確認や更新が格段にやりやすくなりました。期限アラートや有給管理もできるようになり、管理業務の効率が上がりました。',
+          displayName: '人材派遣業 / 匿名',
+          status: 'approved',
+          anonymized: true,
+          permissionConfirmed: true
+        }
+      ]
+    },
+    {
+      id: 'real-estate-crm',
+      voices: [
+        {
+          quote: '案件管理がとてもやりやすくなり、直感的に操作できる点が良かったです。日々の確認や進捗管理がしやすくなり、業務効率が上がりました。',
+          displayName: '不動産業 / 匿名',
+          status: 'approved',
+          anonymized: true,
+          permissionConfirmed: true
+        }
+      ]
+    },
+    {
+      id: 'real-estate-lp',
+      voices: [
+        {
+          quote: '信頼感のあるホームページに仕上がり、安心して案内できるサイトになりました。会社の雰囲気やサービス内容が伝わりやすくなった点が良かったです。',
+          displayName: '不動産業 / 匿名',
+          status: 'approved',
+          anonymized: true,
+          permissionConfirmed: true
+        }
+      ]
+    }
+  ];
+
+  const approvedVoices = (item) => {
+    return (item.voices || []).filter(voice => {
+      return voice.status === 'approved' && voice.permissionConfirmed === true;
+    });
+  };
+
+  const renderWorksVoices = () => {
+    const casesById = new Map(supportCases.map(item => [item.id, item]));
+    document.querySelectorAll('.works-card[data-case-id]').forEach(card => {
+      const item = casesById.get(card.dataset.caseId);
+      const voices = item ? approvedVoices(item) : [];
+      if (!voices.length) return;
+
+      const wrap = document.createElement('div');
+      wrap.className = 'works-voice';
+      wrap.innerHTML = '<span class="works-voice-title">お客様の声</span>';
+
+      voices.forEach(voice => {
+        const quote = document.createElement('blockquote');
+        quote.className = 'works-voice-quote';
+        quote.textContent = `「${voice.quote}」`;
+        wrap.appendChild(quote);
+
+        if (voice.displayName) {
+          const source = document.createElement('p');
+          source.className = 'works-voice-source';
+          source.textContent = voice.displayName;
+          wrap.appendChild(source);
+        }
+      });
+
+      card.appendChild(wrap);
+    });
+  };
+
+  renderWorksVoices();
 
   const gaEventFields = {
     cta_click: ['cta_id', 'location', 'target'],
