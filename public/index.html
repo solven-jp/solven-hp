@@ -127,6 +127,21 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "ホーム",
+        "item": "https://solven.jp/"
+      }
+    ]
+  }
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -898,6 +913,29 @@
       text-wrap: pretty;
     }
     .tags { display: flex; flex-wrap: wrap; gap: .5rem; grid-column: 2; }
+    .service-link-row,
+    .works-link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      grid-column: 2;
+      margin-top: .8rem;
+    }
+    .service-link-row a,
+    .works-link-row a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: .35rem .65rem;
+      border: 1px solid rgba(22,214,199,.26);
+      border-radius: 8px;
+      color: var(--cyan);
+      font-size: .74rem;
+      font-weight: 700;
+      text-decoration: none;
+      background: rgba(22,214,199,.07);
+    }
+    .works-link-row { grid-column: auto; }
     .badge {
       display: inline-flex;
       align-items: center;
@@ -2214,6 +2252,10 @@
           <span class="badge">SEO基本設定</span>
           <span class="badge">スマホ対応</span>
         </div>
+        <div class="service-link-row">
+          <a href="/homepage-production">ホームページ制作</a>
+          <a href="/lp-production">LP制作</a>
+        </div>
       </div>
       <div class="scard reveal" style="transition-delay:.12s">
         <div class="scard-icon" aria-hidden="true">業務アプリ</div>
@@ -2227,6 +2269,10 @@
           <span class="badge">台帳管理</span>
           <span class="badge">段階開発</span>
         </div>
+        <div class="service-link-row">
+          <a href="/web-app-development">Webアプリ制作</a>
+          <a href="/business-improvement">業務改善</a>
+        </div>
       </div>
       <div class="scard reveal" style="transition-delay:.24s">
         <div class="scard-icon" aria-hidden="true">見直し</div>
@@ -2239,6 +2285,10 @@
           <span class="badge">フォーム調整</span>
           <span class="badge">項目確認</span>
           <span class="badge">保守相談</span>
+        </div>
+        <div class="service-link-row">
+          <a href="/maintenance">保守・運用</a>
+          <a href="/business-improvement">既存ツール改善</a>
         </div>
       </div>
     </div>
@@ -2476,6 +2526,9 @@
           <p class="works-detail"><span class="detail-label">対応</span>台帳、契約、証明書管理を一画面に集約</p>
           <p class="works-detail"><span class="detail-label">見直し例</span>確認手順をそろえ、担当者が引き継ぎやすい形へ</p>
         </div>
+        <div class="works-link-row">
+          <a href="/cases/employee-management-app">事例詳細を見る</a>
+        </div>
       </article>
       <article class="works-card" data-case-id="real-estate-crm">
         <div class="works-image work-mock" aria-hidden="true">
@@ -2532,6 +2585,9 @@
           <p class="works-detail"><span class="detail-label">対応</span>スマホ前提の構成、フォーム、SEO基本設定</p>
           <p class="works-detail"><span class="detail-label">見直し例</span>サービス内容と問い合わせ導線を1ページに集約</p>
         </div>
+        <div class="works-link-row">
+          <a href="/cases/real-estate-lp">事例詳細を見る</a>
+        </div>
       </article>
       <article class="works-card" data-case-id="dispatch-management-app">
         <div class="works-image work-mock" aria-hidden="true">
@@ -2583,6 +2639,9 @@
           <p class="works-detail"><span class="detail-label">課題</span>企業向けと求職者向け情報が混在</p>
           <p class="works-detail"><span class="detail-label">対応</span>閲覧者別に導線を分け、問い合わせ先を分離</p>
           <p class="works-detail"><span class="detail-label">見直し例</span>必要情報にたどり着きやすい構成へ調整</p>
+        </div>
+        <div class="works-link-row">
+          <a href="/cases/staffing-company-site">事例詳細を見る</a>
         </div>
       </article>
     </div>
@@ -2842,6 +2901,10 @@
 <footer>
   <span class="footer-logo">Solven合同会社</span>
   <span class="footer-links">
+    <a href="/homepage-production">HP制作</a>
+    <a href="/lp-production">LP制作</a>
+    <a href="/web-app-development">Webアプリ制作</a>
+    <a href="/maintenance">保守</a>
     <a href="#company">運営者情報</a>
     <a href="#privacy">プライバシーポリシー</a>
   </span>
