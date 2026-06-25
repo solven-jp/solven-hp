@@ -34,14 +34,33 @@ Date: 2026-06-25
 
 ## Approval-Gated External Tasks
 
-These were not performed because they require public/account operation approval:
+These require Google account or external profile operation:
 
 - Register or verify `solven.jp` in Google Search Console.
 - Submit `https://solven.jp/sitemap.xml` in Search Console.
 - Run URL Inspection on the top page and new pages.
 - Create or update Google Business Profile.
 - Request external links from profiles, SNS, partners, or production records.
-- Publish/deploy the changed files.
+
+## Search Console Submission Checklist
+
+- Property type: Domain property
+- Property: `solven.jp`
+- Sitemap URL: `https://solven.jp/sitemap.xml`
+- URL Inspection targets:
+  - `https://solven.jp/`
+  - `https://solven.jp/homepage-production`
+  - `https://solven.jp/lp-production`
+  - `https://solven.jp/web-app-development`
+  - `https://solven.jp/business-improvement`
+  - `https://solven.jp/maintenance`
+- Initial metrics to record:
+  - Indexed status
+  - Submitted sitemap status
+  - Top queries
+  - Impressions
+  - Clicks
+  - Average position
 
 ## 90-Day Review Plan
 
