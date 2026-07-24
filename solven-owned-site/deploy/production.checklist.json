@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "environment": "production",
+  "default_state": "pending",
+  "gates": [
+    { "id": "production_source_and_source_commit_fixed", "required": true },
+    { "id": "hosting_project_or_site_fixed", "required": true },
+    { "id": "production_domain_fixed", "required": true },
+    { "id": "persistent_lead_store_connected", "required": true },
+    { "id": "notification_provider_connected", "required": true },
+    { "id": "notification_destination_confirmed", "required": true, "example_only": "info@solven.jp" },
+    { "id": "secret_manager_connected", "required": true },
+    { "id": "production_form_real_delivery_success", "required": true },
+    { "id": "lead_save_success", "required": true },
+    { "id": "notification_success", "required": true },
+    { "id": "outbox_retained_on_notification_failure", "required": true },
+    { "id": "idempotent_resend", "required": true },
+    { "id": "receipt_id_displayed", "required": true },
+    { "id": "internal_lead_id_not_public", "required": true },
+    { "id": "backup_or_snapshot", "required": true },
+    { "id": "rollback_procedure_verified", "required": true },
+    { "id": "staging_e2e", "required": true },
+    { "id": "chromium", "required": true },
+    { "id": "firefox", "required": true },
+    { "id": "webkit_or_real_safari", "required": true },
+    { "id": "accessibility", "required": true },
+    { "id": "security_headers", "required": true },
+    { "id": "noindex_removed", "required": true },
+    { "id": "robots_and_sitemap", "required": true },
+    { "id": "owner_final_approval", "required": true },
+    { "id": "ga4_measurement_and_approval", "required": false, "fallback": "publish-with-ga4-disabled" }
+  ]
+}

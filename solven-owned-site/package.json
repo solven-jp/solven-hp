@@ -1,0 +1,25 @@
+{
+  "name": "@solven/owned-site-local",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync:canonical": "node ../../scripts/solven-canonical/build-adapters.mjs",
+    "project:canonical": "node scripts/project-owned-site-data.mjs",
+    "build": "npm run sync:canonical && npm run project:canonical && node scripts/build-site.mjs && node scripts/check-public-build.mjs",
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:contracts": "node --test tests/adapter-contract.test.mjs tests/rate-limiter.test.mjs tests/environment-security.test.mjs",
+    "test:browser": "node tests/run-browser-e2e.mjs",
+    "check": "node scripts/check-source-syntax.mjs",
+    "validate:environment": "node scripts/validate-environment-schema.mjs",
+    "bundle": "node scripts/generate-portable-bundle.mjs",
+    "bundle:validate": "node scripts/generate-portable-bundle.mjs --allow-dirty --release-id solven-owned-site-uncommitted-validation",
+    "retry:local": "node scripts/retry-local-notifications.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.60.0"
+  },
+  "dependencies": {
+    "@google-cloud/firestore": "^8.7.0"
+  }
+}

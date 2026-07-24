@@ -1,0 +1,1 @@
+section{scroll-margin-top:5.5rem}.result[data-state="error"]{border-left-color:var(--error);background:rgba(158,52,39,.08)}.result[data-state="success"]{border-left-color:var(--cyan)}button:disabled{cursor:wait;opacity:.65}.analytics-control{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-top:1rem}.analytics-control .text-button{margin-top:0}

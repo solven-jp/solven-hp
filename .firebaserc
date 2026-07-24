@@ -1,7 +1,14 @@
 {
   "projects": {
-    "default": "solven-jp"
+    "default": "solven-owned-site-stg-d3e6"
   },
-  "targets": {},
-  "etags": {}
+  "targets": {
+    "solven-owned-site-stg-d3e6": {
+      "hosting": {
+        "staging": [
+          "solven-owned-site-stg-d3e6"
+        ]
+      }
+    }
+  }
 }

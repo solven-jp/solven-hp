@@ -1,0 +1,13 @@
+.git
+.gitignore
+node_modules
+runtime
+release
+design-concepts
+playwright-report
+test-results
+tests
+docs
+public
+deploy
+.env

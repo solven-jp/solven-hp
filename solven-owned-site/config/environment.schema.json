@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://solven.jp/schemas/owned-site-environment-v2.json",
+  "title": "Solven owned-site environment contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "SOLVEN_RUNTIME_ENVIRONMENT",
+    "SOLVEN_PUBLIC_ORIGIN",
+    "SOLVEN_ALLOWED_HOSTS",
+    "SOLVEN_TRUSTED_PROXY_MODE",
+    "SOLVEN_REQUIRE_HTTPS",
+    "SOLVEN_SECURE_COOKIES",
+    "SOLVEN_COOKIE_SAME_SITE",
+    "SOLVEN_SESSION_COOKIE_NAME",
+    "SOLVEN_SESSION_TRANSPORT",
+    "SOLVEN_SESSION_TTL_SECONDS",
+    "SOLVEN_CSRF_ENABLED",
+    "SOLVEN_MAX_BODY_BYTES",
+    "SOLVEN_CORS_MODE",
+    "SOLVEN_LEAD_STORE_ADAPTER",
+    "SOLVEN_OUTBOX_ADAPTER",
+    "SOLVEN_NOTIFICATION_ADAPTER",
+    "SOLVEN_SESSION_ADAPTER",
+    "SOLVEN_RATE_LIMITER_ADAPTER",
+    "SOLVEN_GA4_ENABLED",
+    "SOLVEN_RETENTION_DAYS",
+    "SOLVEN_STAGING",
+    "SOLVEN_NOINDEX",
+    "SOLVEN_RELEASE_ID",
+    "SOLVEN_SOURCE_COMMIT_SHA"
+  ],
+  "properties": {
+    "PORT": { "type": "string", "pattern": "^[1-9][0-9]{0,4}$", "secret": false },
+    "HOST": { "type": "string", "minLength": 1, "secret": false },
+    "SOLVEN_RUNTIME_ENVIRONMENT": { "enum": ["local", "staging", "production"], "secret": false },
+    "SOLVEN_PUBLIC_ORIGIN": { "type": "string", "format": "uri", "secret": false },
+    "SOLVEN_ALLOWED_HOSTS": { "type": "string", "description": "Comma-separated exact hosts; wildcard is forbidden in production", "secret": false },
+    "SOLVEN_TRUSTED_PROXY_MODE": { "enum": ["off", "explicit", "edge"], "secret": false },
+    "SOLVEN_TRUSTED_PROXY_ADDRESSES": { "type": "string", "description": "Comma-separated immediate proxy addresses for explicit mode", "secret": false },
+    "SOLVEN_REQUIRE_HTTPS": { "$ref": "#/$defs/booleanString" },
+    "SOLVEN_SECURE_COOKIES": { "$ref": "#/$defs/booleanString" },
+    "SOLVEN_COOKIE_SAME_SITE": { "enum": ["Strict", "Lax"], "secret": false },
+    "SOLVEN_SESSION_COOKIE_NAME": { "type": "string", "pattern": "^[a-z0-9_]{3,40}$", "secret": false },
+    "SOLVEN_SESSION_TRANSPORT": { "enum": ["cookie", "header"], "secret": false },
+    "SOLVEN_SESSION_TTL_SECONDS": { "type": "string", "pattern": "^[0-9]{3,5}$", "secret": false },
+    "SOLVEN_CSRF_ENABLED": { "$ref": "#/$defs/booleanString" },
+    "SOLVEN_MAX_BODY_BYTES": { "const": "32768", "secret": false },
+    "SOLVEN_CORS_MODE": { "const": "same-origin", "secret": false },
+    "SOLVEN_CONTENT_SECURITY_POLICY": { "type": "string", "minLength": 1, "secret": false },
+    "SOLVEN_REFERRER_POLICY": { "type": "string", "minLength": 1, "secret": false },
+    "SOLVEN_PERMISSIONS_POLICY": { "type": "string", "minLength": 1, "secret": false },
+    "SOLVEN_HSTS_MAX_AGE": { "type": "string", "pattern": "^[0-9]+$", "secret": false },
+    "SOLVEN_HSTS_INCLUDE_SUBDOMAINS": { "$ref": "#/$defs/booleanString" },
+    "SOLVEN_LOG_PII": { "const": "false", "secret": false },
+    "SOLVEN_INCIDENT_CORRELATION_HEADER": { "type": "string", "pattern": "^x-[a-z0-9-]{1,38}$", "secret": false },
+    "SOLVEN_LEAD_STORE_ADAPTER": { "enum": ["local-file", "staging-approved", "production-approved"], "secret": false },
+    "SOLVEN_OUTBOX_ADAPTER": { "enum": ["local-file", "staging-approved", "production-approved"], "secret": false },
+    "SOLVEN_NOTIFICATION_ADAPTER": { "enum": ["local-file", "disabled", "sandbox", "production-approved"], "secret": false },
+    "SOLVEN_SESSION_ADAPTER": { "enum": ["local-memory", "distributed-approved"], "secret": false },
+    "SOLVEN_RATE_LIMITER_ADAPTER": { "enum": ["local-memory", "distributed-approved", "edge-approved"], "secret": false },
+    "SOLVEN_FIRESTORE_PROJECT_ID": { "type": "string", "pattern": "^[a-z][a-z0-9-]{4,28}[a-z0-9]$", "secret": false },
+    "SOLVEN_SECRET_MANAGER_REF": { "$ref": "#/$defs/referenceName" },
+    "SOLVEN_SECRET_NAMESPACE": { "$ref": "#/$defs/referenceName" },
+    "SOLVEN_LEAD_STORE_SECRET_REF": { "$ref": "#/$defs/referenceName" },
+    "SOLVEN_NOTIFICATION_SECRET_REF": { "$ref": "#/$defs/referenceName" },
+    "SOLVEN_NOTIFICATION_DESTINATION_REF": { "$ref": "#/$defs/referenceName" },
+    "SOLVEN_GA4_ENABLED": { "$ref": "#/$defs/booleanString" },
+    "SOLVEN_GA4_MEASUREMENT_ID_REF": { "$ref": "#/$defs/referenceName" },
+    "SOLVEN_GA4_MEASUREMENT_ID": { "type": "string", "pattern": "^G-[A-Z0-9]{6,14}$", "description": "Optional deployment-resolved public build identifier; never committed with a real value", "secret": false },
+    "SOLVEN_RETENTION_DAYS": { "type": "string", "pattern": "^(?:[1-9]|[1-9][0-9]{1,2}|[1-2][0-9]{3}|3[0-5][0-9]{2}|36[0-4][0-9]|3650)$", "secret": false },
+    "SOLVEN_BACKUP_TARGET_REF": { "$ref": "#/$defs/referenceName" },
+    "SOLVEN_STAGING": { "$ref": "#/$defs/booleanString" },
+    "SOLVEN_NOINDEX": { "$ref": "#/$defs/booleanString" },
+    "SOLVEN_RELEASE_ID": { "type": "string", "pattern": "^[A-Za-z0-9._-]{1,80}$", "secret": false },
+    "SOLVEN_SOURCE_COMMIT_SHA": { "type": "string", "pattern": "^[a-fA-F0-9]{7,64}$", "secret": false },
+    "SOLVEN_SITE_RUNTIME_DIR": { "type": "string", "description": "Local adapter only; absolute writable path", "secret": false },
+    "SOLVEN_PUBLIC_ROOT": { "type": "string", "description": "Server-hosted static root", "secret": false }
+  },
+  "$defs": {
+    "booleanString": { "enum": ["true", "false"], "secret": false },
+    "referenceName": { "type": "string", "pattern": "^[A-Za-z0-9_./:-]{1,200}$", "description": "External reference name only; never a secret value", "secret": false }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "SOLVEN_RUNTIME_ENVIRONMENT": { "const": "production" } } },
+      "then": {
+        "properties": {
+          "SOLVEN_REQUIRE_HTTPS": { "const": "true" },
+          "SOLVEN_SECURE_COOKIES": { "const": "true" },
+          "SOLVEN_CSRF_ENABLED": { "const": "true" },
+          "SOLVEN_SESSION_TRANSPORT": { "const": "cookie" },
+          "SOLVEN_LEAD_STORE_ADAPTER": { "const": "production-approved" },
+          "SOLVEN_OUTBOX_ADAPTER": { "const": "production-approved" },
+          "SOLVEN_NOTIFICATION_ADAPTER": { "const": "production-approved" },
+          "SOLVEN_SESSION_ADAPTER": { "const": "distributed-approved" },
+          "SOLVEN_RATE_LIMITER_ADAPTER": { "enum": ["distributed-approved", "edge-approved"] },
+          "SOLVEN_STAGING": { "const": "false" },
+          "SOLVEN_NOINDEX": { "const": "false" }
+        },
+        "required": ["SOLVEN_HSTS_MAX_AGE", "SOLVEN_SECRET_MANAGER_REF", "SOLVEN_SECRET_NAMESPACE", "SOLVEN_LEAD_STORE_SECRET_REF", "SOLVEN_NOTIFICATION_SECRET_REF", "SOLVEN_NOTIFICATION_DESTINATION_REF", "SOLVEN_BACKUP_TARGET_REF"]
+      }
+    },
+    {
+      "if": { "properties": { "SOLVEN_RUNTIME_ENVIRONMENT": { "const": "staging" } } },
+      "then": {
+        "properties": {
+          "SOLVEN_STAGING": { "const": "true" },
+          "SOLVEN_NOINDEX": { "const": "true" },
+          "SOLVEN_GA4_ENABLED": { "const": "false" },
+          "SOLVEN_CSRF_ENABLED": { "const": "true" },
+          "SOLVEN_SESSION_TRANSPORT": { "const": "header" },
+          "SOLVEN_LEAD_STORE_ADAPTER": { "const": "staging-approved" },
+          "SOLVEN_OUTBOX_ADAPTER": { "const": "staging-approved" },
+          "SOLVEN_NOTIFICATION_ADAPTER": { "const": "disabled" },
+          "SOLVEN_SESSION_ADAPTER": { "const": "distributed-approved" },
+          "SOLVEN_RATE_LIMITER_ADAPTER": { "enum": ["distributed-approved", "edge-approved"] },
+          "SOLVEN_RETENTION_DAYS": { "pattern": "^(?:[1-9]|[1-8][0-9]|90)$" },
+          "SOLVEN_FIRESTORE_PROJECT_ID": { "const": "solven-owned-site-stg-d3e6" }
+        },
+        "required": ["SOLVEN_SECRET_MANAGER_REF", "SOLVEN_SECRET_NAMESPACE", "SOLVEN_LEAD_STORE_SECRET_REF", "SOLVEN_BACKUP_TARGET_REF", "SOLVEN_FIRESTORE_PROJECT_ID"]
+      }
+    },
+    {
+      "if": { "properties": { "SOLVEN_RUNTIME_ENVIRONMENT": { "const": "local" } } },
+      "then": {
+        "properties": {
+          "SOLVEN_SESSION_TRANSPORT": { "const": "cookie" }
+        }
+      }
+    }
+  ]
+}

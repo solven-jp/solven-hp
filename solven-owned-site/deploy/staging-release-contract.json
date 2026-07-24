@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "status": "LOCAL_CONTRACT_ONLY",
+  "target": {
+    "project_id": "solven-owned-site-stg-d3e6",
+    "hosting_site": "solven-owned-site-stg-d3e6",
+    "cloud_run_service": "solven-owned-site-stg",
+    "cloud_run_region": "asia-northeast1"
+  },
+  "source_provenance": {
+    "current_revision_reuse": "forbidden",
+    "required_source_tree_state": "clean",
+    "required_release_metadata": ["source_commit_sha", "cloud_run_image_digest", "cloud_run_revision", "hosting_release_id"],
+    "generation_rule": "Build a new image and Hosting artifact from the approved immutable source commit; never promote or attach the audited current revision."
+  },
+  "environment_contract": {
+    "schema": "config/environment.schema.json",
+    "required_values": {
+      "SOLVEN_RUNTIME_ENVIRONMENT": "staging",
+      "SOLVEN_STAGING": "true",
+      "SOLVEN_NOINDEX": "true",
+      "SOLVEN_GA4_ENABLED": "false",
+      "SOLVEN_LEAD_STORE_ADAPTER": "staging-approved",
+      "SOLVEN_OUTBOX_ADAPTER": "staging-approved",
+      "SOLVEN_NOTIFICATION_ADAPTER": "disabled",
+      "SOLVEN_SESSION_ADAPTER": "distributed-approved",
+      "SOLVEN_RATE_LIMITER_ADAPTER": "distributed-approved-or-edge-approved",
+      "SOLVEN_FIRESTORE_PROJECT_ID": "solven-owned-site-stg-d3e6"
+    },
+    "secret_manager_references_only": [
+      "SOLVEN_SECRET_MANAGER_REF",
+      "SOLVEN_SECRET_NAMESPACE",
+      "SOLVEN_LEAD_STORE_SECRET_REF",
+      "SOLVEN_BACKUP_TARGET_REF"
+    ],
+    "secret_reference_policy": {
+      "reference_name_pattern": "^[A-Za-z0-9_./:-]{1,200}$",
+      "resolved_secret_version_pattern": "^projects/solven-owned-site-stg-d3e6/secrets/[A-Za-z0-9_-]{1,255}/versions/[1-9][0-9]*$",
+      "required_version_selector": "numeric-version",
+      "forbidden_version_aliases": ["latest"],
+      "resolved_secret_values_in_release_artifacts": "forbidden"
+    },
+    "prohibited": ["secret_values_in_source_or_build", "production_secret_namespace", "production_data_connection", "real_customer_data"]
+  },
+  "firestore_ttl_policy": {
+    "field": "purge_at",
+    "collection_groups": [
+      "solven_owned_site_staging_leads",
+      "solven_owned_site_staging_idempotency",
+      "solven_owned_site_staging_receipts",
+      "solven_owned_site_staging_outbox",
+      "solven_owned_site_staging_sessions",
+      "solven_owned_site_staging_rate_limits"
+    ],
+    "required_before_synthetic_data": true,
+    "verification": "Read-only confirm that every collection group enables TTL on purge_at. Firestore TTL deletion is asynchronous and does not guarantee deletion at the exact expiry time."
+  },
+  "hosting_plan": {
+    "public_directory": "dist",
+    "noindex": true,
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "run": { "service_id": "solven-owned-site-stg", "region": "asia-northeast1" }
+      }
+    ],
+    "required_headers": {
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY",
+      "Referrer-Policy": "strict-origin-when-cross-origin"
+    },
+    "apply_preconditions": [
+      "Owner approves Hosting configuration and Cloud Run Invoker IAM binding for the Firebase Hosting service agent.",
+      "Read-only confirmation records the exact Hosting service-agent principal before any IAM mutation.",
+      "The new Cloud Run revision passes /api/health through the Hosting origin; direct unauthenticated access remains denied."
+    ]
+  },
+  "rollback_plan": {
+    "required_recorded_identifiers": ["hosting_release_id", "cloud_run_revision", "cloud_run_image_digest"],
+    "before_apply": "Record the current Hosting release ID and Cloud Run revision without changing either resource.",
+    "rollback": "Restore the recorded Hosting release and direct traffic only to the recorded Cloud Run revision.",
+    "verification": ["Hosting-origin /api/health", "noindex response", "synthetic lead E2E", "three-browser smoke test"]
+  },
+  "external_actions": "This file is not deploy configuration. It authorizes no Cloud, IAM, Secret Manager, Firestore, Hosting, or deploy action."
+}

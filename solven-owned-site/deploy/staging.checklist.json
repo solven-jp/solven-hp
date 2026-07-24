@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "environment": "staging",
+  "default_state": "pending",
+  "gates": [
+    { "id": "source_commit_fixed", "required": true },
+    { "id": "hosting_preview_target_fixed", "required": true },
+    { "id": "distinct_origin", "required": true },
+    { "id": "noindex_nofollow", "required": true },
+    { "id": "ga4_disabled", "required": true },
+    { "id": "staging_lead_store_connected", "required": true },
+    { "id": "notification_disabled", "required": true },
+    { "id": "firestore_ttl_purge_at_verified", "required": true },
+    { "id": "production_secrets_and_data_disconnected", "required": true },
+    { "id": "synthetic_data_only", "required": true },
+    { "id": "staging_contact_submission_disabled", "required": true },
+    { "id": "idempotent_resend", "required": true },
+    { "id": "receipt_id_public_and_lead_id_private", "required": true },
+    { "id": "chromium", "required": true },
+    { "id": "firefox", "required": true },
+    { "id": "webkit_or_real_safari", "required": true },
+    { "id": "accessibility", "required": true },
+    { "id": "security_headers", "required": true },
+    { "id": "rollback_dry_run", "required": true },
+    { "id": "owner_staging_approval", "required": true }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "environment": "staging",
+  "requirements": {
+    "origin": "different-from-production",
+    "robots": "noindex,nofollow",
+    "ga4": "disabled",
+    "lead_store_scope": "staging-only",
+    "contact_submission": "disabled",
+    "real_customer_data": "prohibited",
+    "notification": "disabled",
+    "retention": "ttl-purge-at-required",
+    "secret_namespace": "staging-only",
+    "session_cookie": "staging-only",
+    "production_data_connection": "prohibited",
+    "access_control_secret": "external-secret-manager-reference-only",
+    "release_metadata": "internal-health-only"
+  },
+  "environment_contract": {
+    "SOLVEN_RUNTIME_ENVIRONMENT": "staging",
+    "SOLVEN_STAGING": "true",
+    "SOLVEN_NOINDEX": "true",
+    "SOLVEN_GA4_ENABLED": "false",
+    "SOLVEN_LEAD_STORE_ADAPTER": "staging-approved",
+    "SOLVEN_OUTBOX_ADAPTER": "staging-approved",
+    "SOLVEN_NOTIFICATION_ADAPTER": "disabled",
+    "SOLVEN_SESSION_ADAPTER": "distributed-approved",
+    "SOLVEN_RATE_LIMITER_ADAPTER": "distributed-approved-or-edge-approved",
+    "SOLVEN_FIRESTORE_PROJECT_ID": "solven-owned-site-stg-d3e6",
+    "SOLVEN_RETENTION_DAYS": "1-90"
+  }
+}

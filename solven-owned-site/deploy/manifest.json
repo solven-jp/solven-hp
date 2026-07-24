@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "application": "solven-owned-site",
+  "presentation_version": "v2",
+  "presentation_baseline_commit": "ce2b532991b528a93c35373037768b90e9b1e121",
+  "source": "apps/solven-owned-site",
+  "build": {
+    "command": "npm run build",
+    "static_output": "dist",
+    "default_environment": "staging",
+    "default_indexing": false,
+    "build_environment_keys": ["SOLVEN_RUNTIME_ENVIRONMENT", "SOLVEN_NOINDEX", "SOLVEN_GA4_ENABLED"],
+    "optional_resolved_build_keys": ["SOLVEN_GA4_MEASUREMENT_ID"]
+  },
+  "artifact_exclusions": [
+    "release/",
+    "design-concepts/",
+    "tests/fixtures/",
+    "runtime/",
+    "playwright-report/",
+    "test-results/",
+    "logs/",
+    ".env",
+    "credentials/"
+  ],
+  "routes": {
+    "static": ["/*"],
+    "server": ["/api/session", "/api/leads", "/api/health"],
+    "same_origin_required": true,
+    "public_receipt_lookup": false
+  },
+  "runtime": {
+    "entrypoint": "server.mjs",
+    "public_healthcheck": "/api/health",
+    "public_health_fields": ["status"],
+    "lead_store_adapter": "production-approved",
+    "outbox_adapter": "production-approved",
+    "notification_adapter": "production-approved",
+    "rate_limiter_adapter": "distributed-approved-or-edge-approved",
+    "session_adapter": "distributed-approved",
+    "environment_schema": "config/environment.schema.json",
+    "production_unsafe_defaults": "fail-startup"
+  },
+  "staging_defaults": "deploy/staging.defaults.json",
+  "staging_release_contract": "deploy/staging-release-contract.json",
+  "release_checklists": {
+    "staging": "deploy/staging.checklist.json",
+    "production": "deploy/production.checklist.json"
+  },
+  "release_gates": [
+    "owner_approval",
+    "production_source_confirmed",
+    "hosting_target_confirmed",
+    "production_adapters_approved",
+    "staging_e2e_passed",
+    "rollback_snapshot_confirmed"
+  ],
+  "optional_features": ["ga4"],
+  "prohibited_automatic_actions": ["deploy", "database_migration", "auth_change", "customer_send"]
+}
