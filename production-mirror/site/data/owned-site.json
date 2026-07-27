@@ -1,0 +1,234 @@
+{
+  "canonical": {
+    "id": "SOLVEN-BUSINESS-MASTER",
+    "version": "1.2.0",
+    "as_of": "2026-07-20"
+  },
+  "brand": {
+    "message": "中小企業のWebを、集客から業務改善まで、運用できる形に。",
+    "catchcopy": "集客の入口から、現場の仕組みまで。"
+  },
+  "company": {
+    "legal_name": "Solven合同会社",
+    "representative_role": "代表社員",
+    "representative_name": "岩本和貴",
+    "registered_postal_code": "460-0002",
+    "registered_address": "愛知県名古屋市中区丸の内3丁目7番26号",
+    "business_email": "info@solven.jp"
+  },
+  "pricing": {
+    "tax_display": "exclusive",
+    "hplp": [
+      {
+        "plan_id": "lp-start",
+        "name": "LP Start",
+        "technology": "static_html",
+        "production_consideration_ex_tax": 355000,
+        "production_consideration_in_tax_at_10pct": 390500,
+        "production_payment_schedule": [
+          {
+            "label": "契約・制作枠確定時",
+            "percentage": 0.4,
+            "amount_ex_tax": 142000
+          },
+          {
+            "label": "デザイン確定時",
+            "percentage": 0.3,
+            "amount_ex_tax": 106500
+          },
+          {
+            "label": "本番公開直前",
+            "percentage": 0.3,
+            "amount_ex_tax": 106500
+          }
+        ],
+        "maintenance": {
+          "minimum_months": 6,
+          "monthly_fee_ex_tax": 5500
+        },
+        "minimum_contract_total_ex_tax": 388000,
+        "minimum_contract_total_in_tax_at_10pct": 426800,
+        "maintenance_monthly_from_ex_tax": null,
+        "maintenance_minimum_months": null,
+        "public_fixed_price": true,
+        "quote_range_ex_tax": null,
+        "standard_scope": {
+          "primary_pages": 1,
+          "max_sections": 8,
+          "forms": 1,
+          "cms_types": 0,
+          "initial_posts": 0
+        },
+        "standard_delivery_business_days": 30
+      },
+      {
+        "plan_id": "hp-start-html",
+        "name": "HP Start HTML",
+        "technology": "static_html",
+        "production_consideration_ex_tax": 590000,
+        "production_consideration_in_tax_at_10pct": 649000,
+        "production_payment_schedule": [
+          {
+            "label": "契約・制作枠確定時",
+            "percentage": 0.4,
+            "amount_ex_tax": 236000
+          },
+          {
+            "label": "デザイン確定時",
+            "percentage": 0.3,
+            "amount_ex_tax": 177000
+          },
+          {
+            "label": "本番公開直前",
+            "percentage": 0.3,
+            "amount_ex_tax": 177000
+          }
+        ],
+        "maintenance": {
+          "minimum_months": 6,
+          "monthly_fee_ex_tax": 11000
+        },
+        "minimum_contract_total_ex_tax": 656000,
+        "minimum_contract_total_in_tax_at_10pct": 721600,
+        "maintenance_monthly_from_ex_tax": null,
+        "maintenance_minimum_months": null,
+        "public_fixed_price": true,
+        "quote_range_ex_tax": null,
+        "standard_scope": {
+          "primary_pages": 5,
+          "forms": 1,
+          "cms_types": 0,
+          "initial_posts": 0
+        },
+        "standard_delivery_business_days": 45
+      },
+      {
+        "plan_id": "hp-start-wordpress",
+        "name": "HP Start WordPress",
+        "technology": "wordpress",
+        "production_consideration_ex_tax": 590000,
+        "production_consideration_in_tax_at_10pct": 649000,
+        "production_payment_schedule": [
+          {
+            "label": "契約・制作枠確定時",
+            "percentage": 0.4,
+            "amount_ex_tax": 236000
+          },
+          {
+            "label": "デザイン確定時",
+            "percentage": 0.3,
+            "amount_ex_tax": 177000
+          },
+          {
+            "label": "本番公開直前",
+            "percentage": 0.3,
+            "amount_ex_tax": 177000
+          }
+        ],
+        "maintenance": {
+          "minimum_months": 6,
+          "monthly_fee_ex_tax": 16500
+        },
+        "minimum_contract_total_ex_tax": 689000,
+        "minimum_contract_total_in_tax_at_10pct": 757900,
+        "maintenance_monthly_from_ex_tax": null,
+        "maintenance_minimum_months": null,
+        "public_fixed_price": true,
+        "quote_range_ex_tax": null,
+        "standard_scope": {
+          "primary_pages": 5,
+          "forms": 1,
+          "cms_types": 1,
+          "initial_posts": 3
+        },
+        "standard_delivery_business_days": 60
+      },
+      {
+        "plan_id": "hp-growth",
+        "name": "HP Growth",
+        "technology": "wordpress",
+        "production_consideration_ex_tax": null,
+        "production_consideration_in_tax_at_10pct": null,
+        "production_payment_schedule": null,
+        "maintenance": null,
+        "minimum_contract_total_ex_tax": null,
+        "minimum_contract_total_in_tax_at_10pct": null,
+        "maintenance_monthly_from_ex_tax": 33000,
+        "maintenance_minimum_months": 6,
+        "public_fixed_price": false,
+        "quote_range_ex_tax": {
+          "min": 1450000,
+          "max": 1800000
+        },
+        "standard_scope": {
+          "primary_pages": 8,
+          "forms": 1,
+          "cms_types": 2,
+          "initial_posts": 10
+        },
+        "standard_delivery_business_days": null
+      }
+    ],
+    "webapp": [
+      {
+        "plan_id": "mini",
+        "name": "業務ミニツール",
+        "starting_price": 330000,
+        "screens_guide": 5,
+        "roles_guide": 2
+      },
+      {
+        "plan_id": "standard",
+        "name": "業務Webアプリ",
+        "starting_price": 770000,
+        "screens_guide": 12,
+        "roles_guide": 3
+      },
+      {
+        "plan_id": "plus",
+        "name": "業務Webアプリ Plus",
+        "starting_price": 1200000,
+        "screens_guide": 20,
+        "roles_guide": 5
+      },
+      {
+        "plan_id": "custom",
+        "name": "カスタム業務システム",
+        "starting_price": 1500000,
+        "screens_guide": null,
+        "roles_guide": null
+      }
+    ],
+    "requirements_services": {
+      "mini": 55000,
+      "standard": 110000,
+      "advanced": 220000,
+      "legacy_investigation": "custom"
+    },
+    "webapp_maintenance": {
+      "self": {
+        "monthly": 0,
+        "included_custom_work_minutes": 0
+      },
+      "light": {
+        "monthly_from": 16500,
+        "included_custom_work_minutes": 30
+      },
+      "standard": {
+        "monthly_from": 33000,
+        "included_custom_work_minutes": 120
+      },
+      "priority": {
+        "monthly_from": 66000,
+        "included_custom_work_minutes": 240
+      }
+    },
+    "additional_work": {
+      "billing_unit_minutes": 30,
+      "fee_ex_tax_per_unit": 5500,
+      "effective_hourly_rate_ex_tax": 11000,
+      "advance_quote_and_approval_required": true,
+      "automatic_overage_billing_prohibited": true
+    }
+  }
+}
