@@ -46,13 +46,27 @@
     "future_updates_require": [
       "A reviewed source pull request and immutable source commit.",
       "A regenerated static bundle, release manifest, checksums, and formal review scope.",
-      "A passing production-mirror-integrity status check and required code-owner review after branch protection is enabled."
+      "A passing production-mirror-integrity status check after main branch protection is separately enabled.",
+      "An independent Codex review receipt and explicit PM approval for the exact pull-request head."
     ],
     "initial_baseline_exception": {
       "kind": "existing-production-observation",
       "source_review_status": "not_asserted_by_this_mirror",
-      "formal_review_status": "pending_on_this_draft_pull_request",
+      "formal_review_status": "awaiting_updated_head_independent_review_and_pm_approval",
       "new_deployment_authorized": false
+    }
+  },
+  "review_governance": {
+    "github_independent_approval_available": false,
+    "codeowners": "intentionally_absent_for_single_owner_repository",
+    "formal_gate": [
+      "independent_codex_review_receipt_for_exact_pr_head",
+      "explicit_pm_approval_for_same_head"
+    ],
+    "main_protection": {
+      "status": "post_pr_2_merge_follow_up_not_applicable_to_pr_2",
+      "planned_required_status_check": "Production mirror integrity",
+      "codeowner_requirement": "defer_until_distinct_github_user_or_team_exists"
     }
   }
 }

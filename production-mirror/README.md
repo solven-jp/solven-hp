@@ -33,4 +33,8 @@ The optional comparison decodes only Cloudflare `__cf_email__` anchors, removes 
 
 Do not edit files under `site/` by hand. A future update must originate from a formally reviewed `Solven-codex` bundle, then update the release manifest, checksum inventory, and `FORMAL_REVIEW_SCOPE.sha256` together. The initial baseline's source-review status is intentionally not claimed here; its formal review is the purpose of this draft PR.
 
+## Formal review limitation and gate
+
+This repository has a single GitHub owner, so a self-approval cannot be treated as independent. `CODEOWNERS` is intentionally absent until a distinct GitHub user or team can own the mirror path. For PR #2, an independent Codex review receipt and explicit PM approval must both refer to the exact successful CI head; see `INDEPENDENT_REVIEW_RECEIPT.md`. Future `main` branch protection is a separate post-merge setting and does not retrospectively enforce PR #2.
+
 `firebase.json`, Cloud Run configuration, GitHub Pages configuration, Firestore, and secrets are out of scope for this mirror change.

@@ -12,14 +12,15 @@ const baselineCommit = "52224782dd4f137d30e4fb825aa0ea893f7bb6f4";
 const baselineTree = "8b4a06173648fc38be0a0b09b6aeee472dd08b8e";
 const expectedFileCount = 18;
 const scopeControlPaths = [
-  ".github/CODEOWNERS",
   ".github/workflows/production-mirror-integrity.yml",
   "MIRROR_OPERATIONS.md",
+  "production-mirror/INDEPENDENT_REVIEW_RECEIPT.md",
   "production-mirror/README.md",
   "production-mirror/checksums.sha256",
   "production-mirror/release-manifest.json",
   "scripts/verify-production-mirror.mjs"
 ];
+const retiredScopePaths = [".github/CODEOWNERS"];
 
 function sha256(content) {
   return crypto.createHash("sha256").update(content).digest("hex");
@@ -140,13 +141,15 @@ function verifyFormalScope(entries) {
 function verifyChangedScope(base) {
   if (!base) return;
   assert.match(base, /^[a-f0-9]{40}$/i, "base_sha_invalid");
-  const output = execFileSync("git", ["diff", "--name-only", "--diff-filter=ACMRTUXB", `${base}...HEAD`], { cwd: repositoryRoot, encoding: "utf8" });
+  const output = execFileSync("git", ["diff", "--name-only", "--diff-filter=ACDMRTUXB", `${base}...HEAD`], { cwd: repositoryRoot, encoding: "utf8" });
   const changed = output.split("\n").filter(Boolean).sort();
   const allowed = new Set([
     "production-mirror/FORMAL_REVIEW_SCOPE.sha256",
     ...scopeControlPaths,
+    ...retiredScopePaths,
     ...walk(path.join(mirrorRoot, "site")).map((file) => `production-mirror/site/${file}`)
   ]);
+  for (const file of retiredScopePaths) assert.equal(fs.existsSync(path.join(repositoryRoot, file)), false, `retired_scope_path_recreated:${file}`);
   for (const file of changed) assert.equal(allowed.has(file), true, `out_of_scope_change:${file}`);
   assert.ok(changed.length > 0, "empty_pull_request_scope");
 }
@@ -176,6 +179,17 @@ assert.equal(manifest.excluded_source_revision?.merge_commit, "5c12fcaa1fa416c3c
 assert.equal(manifest.excluded_source_revision?.state, "excluded_from_this_baseline", "excluded_revision_state_invalid");
 assert.equal(manifest.update_policy?.human_direct_edits, "forbidden", "direct_edit_policy_invalid");
 assert.equal(manifest.update_policy?.initial_baseline_exception?.source_review_status, "not_asserted_by_this_mirror", "baseline_review_status_invalid");
+assert.equal(manifest.update_policy?.initial_baseline_exception?.formal_review_status, "awaiting_updated_head_independent_review_and_pm_approval", "baseline_formal_review_status_invalid");
+assert.equal(manifest.review_governance?.github_independent_approval_available, false, "github_independent_approval_must_not_be_claimed");
+assert.equal(manifest.review_governance?.codeowners, "intentionally_absent_for_single_owner_repository", "codeowners_governance_invalid");
+assert.deepEqual(manifest.review_governance?.formal_gate, [
+  "independent_codex_review_receipt_for_exact_pr_head",
+  "explicit_pm_approval_for_same_head"
+], "formal_gate_invalid");
+assert.equal(manifest.review_governance?.main_protection?.status, "post_pr_2_merge_follow_up_not_applicable_to_pr_2", "main_protection_timing_invalid");
+assert.equal(manifest.review_governance?.main_protection?.planned_required_status_check, "Production mirror integrity", "main_protection_status_check_invalid");
+assert.equal(manifest.review_governance?.main_protection?.codeowner_requirement, "defer_until_distinct_github_user_or_team_exists", "main_protection_codeowner_requirement_invalid");
+assert.equal(fs.existsSync(path.join(repositoryRoot, ".github/CODEOWNERS")), false, "codeowners_must_remain_absent_without_independent_owner");
 
 const checksumFile = path.join(mirrorRoot, "checksums.sha256");
 const { text: checksumText, entries } = parseChecksumFile(checksumFile);
