@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "mirror_role": "deploy-only-static-bundle-mirror",
+  "release_mode": "recorded-existing-production-baseline",
+  "deployment": {
+    "authorized": false,
+    "reason": "This change records an existing production baseline only. It does not authorize Firebase Hosting, Cloud Run, Firestore, or GitHub Pages changes."
+  },
+  "source": {
+    "repository": "solven-jp/Solven-codex",
+    "commit": "52224782dd4f137d30e4fb825aa0ea893f7bb6f4",
+    "tree": "8b4a06173648fc38be0a0b09b6aeee472dd08b8e",
+    "branch_observed_at_verification": "codex/owned-site-utm-form-fix",
+    "application_path": "apps/solven-owned-site",
+    "static_output_path": "apps/solven-owned-site/dist",
+    "build_command": "npm run build:production",
+    "build_environment": {
+      "SOLVEN_RUNTIME_ENVIRONMENT": "production",
+      "SOLVEN_NOINDEX": "false",
+      "SOLVEN_GA4_ENABLED": "false"
+    },
+    "source_tree_state": "clean"
+  },
+  "artifact": {
+    "path": "site",
+    "file_count": 18,
+    "checksum_algorithm": "sha256",
+    "checksums": "checksums.sha256",
+    "checksum_inventory_sha256": "9872da2d699d0101c2e0bef5b3feb5656a7222f6be28edb72a68c71a9b265e55"
+  },
+  "verification": {
+    "public_origin": "https://solven.jp",
+    "public_file_comparison": "18/18 matched after Cloudflare edge normalization",
+    "edge_normalization": "Decode Cloudflare __cf_email__ anchors, remove the paired email-decode script, and remove only the explicit Cloudflare Managed content block from robots.txt before byte comparison."
+  },
+  "excluded_source_revision": {
+    "repository": "solven-jp/Solven-codex",
+    "pull_request": 81,
+    "merge_commit": "5c12fcaa1fa416c3c24bb5cffe90baa3fa5ad929",
+    "state": "excluded_from_this_baseline",
+    "reason": "The recorded baseline and this merged revision are divergent; this mirror must not substitute the newer revision for the observed production artifact."
+  },
+  "update_policy": {
+    "human_direct_edits": "forbidden",
+    "accepted_input": "A formally reviewed Solven-codex bundle with immutable source provenance.",
+    "future_updates_require": [
+      "A reviewed source pull request and immutable source commit.",
+      "A regenerated static bundle, release manifest, checksums, and formal review scope.",
+      "A passing production-mirror-integrity status check and required code-owner review after branch protection is enabled."
+    ],
+    "initial_baseline_exception": {
+      "kind": "existing-production-observation",
+      "source_review_status": "not_asserted_by_this_mirror",
+      "formal_review_status": "pending_on_this_draft_pull_request",
+      "new_deployment_authorized": false
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "analytics": {
+    "enabled": false,
+    "provider": "ga4",
+    "measurementId": ""
+  },
+  "environment": "production"
+}

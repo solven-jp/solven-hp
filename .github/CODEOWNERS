@@ -1,0 +1,5 @@
+# This file becomes enforceable only after the separately approved main-branch protection rule requires code-owner review.
+/production-mirror/ @solven-jp
+/.github/workflows/production-mirror-integrity.yml @solven-jp
+/scripts/verify-production-mirror.mjs @solven-jp
+/MIRROR_OPERATIONS.md @solven-jp

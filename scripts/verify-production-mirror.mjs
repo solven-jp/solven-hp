@@ -1,0 +1,203 @@
+#!/usr/bin/env node
+import assert from "node:assert/strict";
+import crypto from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
+import { execFileSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
+
+const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const mirrorRoot = path.join(repositoryRoot, "production-mirror");
+const baselineCommit = "52224782dd4f137d30e4fb825aa0ea893f7bb6f4";
+const baselineTree = "8b4a06173648fc38be0a0b09b6aeee472dd08b8e";
+const expectedFileCount = 18;
+const scopeControlPaths = [
+  ".github/CODEOWNERS",
+  ".github/workflows/production-mirror-integrity.yml",
+  "MIRROR_OPERATIONS.md",
+  "production-mirror/README.md",
+  "production-mirror/checksums.sha256",
+  "production-mirror/release-manifest.json",
+  "scripts/verify-production-mirror.mjs"
+];
+
+function sha256(content) {
+  return crypto.createHash("sha256").update(content).digest("hex");
+}
+
+function argument(name) {
+  const index = process.argv.indexOf(name);
+  if (index < 0) return null;
+  const value = process.argv[index + 1];
+  assert.ok(value && !value.startsWith("--"), `missing_argument:${name}`);
+  return value;
+}
+
+function relativePath(root, file) {
+  const relative = path.relative(root, file).split(path.sep).join("/");
+  assert.equal(relative.startsWith("../") || path.isAbsolute(relative), false, `path_escape:${relative}`);
+  return relative;
+}
+
+function walk(root) {
+  const files = [];
+  const pending = [root];
+  while (pending.length) {
+    const current = pending.pop();
+    for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
+      const file = path.join(current, entry.name);
+      const relative = relativePath(root, file);
+      const stat = fs.lstatSync(file);
+      assert.equal(stat.isSymbolicLink(), false, `symlink_forbidden:${relative}`);
+      if (entry.isDirectory()) pending.push(file);
+      else if (entry.isFile()) files.push(relative);
+      else throw new Error(`unsupported_file_type:${relative}`);
+    }
+  }
+  return files.sort();
+}
+
+function parseChecksumFile(file) {
+  const text = fs.readFileSync(file, "utf8");
+  assert.equal(text.endsWith("\n"), true, "checksums_newline_required");
+  const entries = text.trim().split("\n").filter(Boolean).map((line) => {
+    const match = line.match(/^([a-f0-9]{64})  (site\/(?!.*(?:^|\/)\.\.?(?:\/|$)).+)$/);
+    assert.ok(match, `invalid_checksum_line:${line}`);
+    return { hash: match[1], path: match[2] };
+  });
+  assert.equal(entries.length, expectedFileCount, "unexpected_checksum_count");
+  const paths = entries.map((entry) => entry.path);
+  assert.deepEqual(paths, [...paths].sort(), "checksums_must_be_sorted_by_path");
+  assert.equal(new Set(paths).size, paths.length, "duplicate_checksum_path");
+  return { text, entries };
+}
+
+function decodeCloudflareEmail(encoded) {
+  assert.match(encoded, /^(?:[a-f0-9]{2})+$/i, "cloudflare_email_encoding_invalid");
+  const key = Number.parseInt(encoded.slice(0, 2), 16);
+  let decoded = "";
+  for (let index = 2; index < encoded.length; index += 2) {
+    decoded += String.fromCharCode(Number.parseInt(encoded.slice(index, index + 2), 16) ^ key);
+  }
+  return decoded;
+}
+
+function normalizeCloudflareHtml(buffer) {
+  let html = buffer.toString("utf8");
+  html = html.replace(/<a\s+[^>]*class="__cf_email__"[^>]*data-cfemail="([a-f0-9]+)"[^>]*>[\s\S]*?<\/a>/gi, (_match, encoded) => decodeCloudflareEmail(encoded));
+  html = html.replace(/<script\s+[^>]*data-cfasync="false"[^>]*src="\/cdn-cgi\/scripts\/[^\"]*\/cloudflare-static\/email-decode\.min\.js"[^>]*><\/script>/gi, "");
+  return Buffer.from(html, "utf8");
+}
+
+function normalizeCloudflareRobots(buffer) {
+  let robots = buffer.toString("utf8");
+  if (/# BEGIN Cloudflare Managed Content/im.test(robots)) {
+    const endMarker = /^# END Cloudflare Managed Content\r?\n\r?\n/im.exec(robots);
+    assert.ok(endMarker, "cloudflare_robots_end_marker_missing");
+    robots = robots.slice(endMarker.index + endMarker[0].length);
+  }
+  return Buffer.from(robots, "utf8");
+}
+
+function normalizeCloudflareArtifact(entryPath, buffer) {
+  if (entryPath.endsWith(".html")) return normalizeCloudflareHtml(buffer);
+  if (entryPath === "site/robots.txt") return normalizeCloudflareRobots(buffer);
+  return buffer;
+}
+
+function verifyComparison(compareRoot, entries) {
+  const actualRoot = path.resolve(compareRoot);
+  assert.equal(fs.statSync(actualRoot).isDirectory(), true, "compare_root_not_directory");
+  for (const entry of entries) {
+    const expected = fs.readFileSync(path.join(mirrorRoot, entry.path));
+    const actualPath = path.join(actualRoot, entry.path.replace(/^site\//, ""));
+    assert.equal(fs.existsSync(actualPath), true, `comparison_file_missing:${entry.path}`);
+    const actual = normalizeCloudflareArtifact(entry.path, fs.readFileSync(actualPath));
+    assert.equal(actual.equals(expected), true, `comparison_mismatch:${entry.path}`);
+  }
+  process.stdout.write(`production-mirror live-compare: PASS (${entries.length} files; cloudflare-edge-normalized)\n`);
+}
+
+function verifyFormalScope(entries) {
+  const scopePath = path.join(mirrorRoot, "FORMAL_REVIEW_SCOPE.sha256");
+  const scope = fs.readFileSync(scopePath, "utf8");
+  assert.equal(scope.endsWith("\n"), true, "formal_scope_newline_required");
+  const parsed = scope.trim().split("\n").filter(Boolean).map((line) => {
+    const match = line.match(/^([a-f0-9]{64})  (.+)$/);
+    assert.ok(match, `formal_scope_invalid_line:${line}`);
+    assert.equal(match[2].startsWith("/") || match[2].includes(".."), false, `formal_scope_path_invalid:${match[2]}`);
+    return { hash: match[1], path: match[2] };
+  });
+  const expectedPaths = [...scopeControlPaths, ...entries.map((entry) => `production-mirror/${entry.path}`)].sort();
+  assert.deepEqual(parsed.map((entry) => entry.path), expectedPaths, "formal_scope_inventory_mismatch");
+  for (const entry of parsed) {
+    const file = path.join(repositoryRoot, entry.path);
+    assert.equal(fs.existsSync(file), true, `formal_scope_file_missing:${entry.path}`);
+    assert.equal(sha256(fs.readFileSync(file)), entry.hash, `formal_scope_hash_mismatch:${entry.path}`);
+  }
+}
+
+function verifyChangedScope(base) {
+  if (!base) return;
+  assert.match(base, /^[a-f0-9]{40}$/i, "base_sha_invalid");
+  const output = execFileSync("git", ["diff", "--name-only", "--diff-filter=ACMRTUXB", `${base}...HEAD`], { cwd: repositoryRoot, encoding: "utf8" });
+  const changed = output.split("\n").filter(Boolean).sort();
+  const allowed = new Set([
+    "production-mirror/FORMAL_REVIEW_SCOPE.sha256",
+    ...scopeControlPaths,
+    ...walk(path.join(mirrorRoot, "site")).map((file) => `production-mirror/site/${file}`)
+  ]);
+  for (const file of changed) assert.equal(allowed.has(file), true, `out_of_scope_change:${file}`);
+  assert.ok(changed.length > 0, "empty_pull_request_scope");
+}
+
+const manifest = JSON.parse(fs.readFileSync(path.join(mirrorRoot, "release-manifest.json"), "utf8"));
+assert.equal(manifest.schema_version, 1, "manifest_schema_version_invalid");
+assert.equal(manifest.mirror_role, "deploy-only-static-bundle-mirror", "mirror_role_invalid");
+assert.equal(manifest.release_mode, "recorded-existing-production-baseline", "release_mode_invalid");
+assert.equal(manifest.deployment?.authorized, false, "deployment_must_remain_unauthorized");
+assert.equal(manifest.source?.repository, "solven-jp/Solven-codex", "source_repository_invalid");
+assert.equal(manifest.source?.commit, baselineCommit, "source_commit_not_pinned_baseline");
+assert.equal(manifest.source?.tree, baselineTree, "source_tree_not_pinned_baseline");
+assert.equal(manifest.source?.application_path, "apps/solven-owned-site", "source_application_path_invalid");
+assert.equal(manifest.source?.static_output_path, "apps/solven-owned-site/dist", "source_output_path_invalid");
+assert.equal(manifest.source?.build_command, "npm run build:production", "source_build_command_invalid");
+assert.deepEqual(manifest.source?.build_environment, {
+  SOLVEN_RUNTIME_ENVIRONMENT: "production",
+  SOLVEN_NOINDEX: "false",
+  SOLVEN_GA4_ENABLED: "false"
+}, "source_build_environment_invalid");
+assert.equal(manifest.artifact?.path, "site", "artifact_path_invalid");
+assert.equal(manifest.artifact?.file_count, expectedFileCount, "artifact_file_count_invalid");
+assert.equal(manifest.artifact?.checksum_algorithm, "sha256", "checksum_algorithm_invalid");
+assert.equal(manifest.artifact?.checksums, "checksums.sha256", "checksum_file_invalid");
+assert.equal(manifest.excluded_source_revision?.pull_request, 81, "excluded_pr_invalid");
+assert.equal(manifest.excluded_source_revision?.merge_commit, "5c12fcaa1fa416c3c24bb5cffe90baa3fa5ad929", "excluded_merge_commit_invalid");
+assert.equal(manifest.excluded_source_revision?.state, "excluded_from_this_baseline", "excluded_revision_state_invalid");
+assert.equal(manifest.update_policy?.human_direct_edits, "forbidden", "direct_edit_policy_invalid");
+assert.equal(manifest.update_policy?.initial_baseline_exception?.source_review_status, "not_asserted_by_this_mirror", "baseline_review_status_invalid");
+
+const checksumFile = path.join(mirrorRoot, "checksums.sha256");
+const { text: checksumText, entries } = parseChecksumFile(checksumFile);
+assert.equal(sha256(checksumText), manifest.artifact.checksum_inventory_sha256, "checksum_inventory_hash_mismatch");
+const artifactFiles = walk(path.join(mirrorRoot, "site"));
+assert.deepEqual(artifactFiles, entries.map((entry) => entry.path.replace(/^site\//, "")), "artifact_inventory_mismatch");
+for (const entry of entries) {
+  const file = path.join(mirrorRoot, entry.path);
+  assert.equal(sha256(fs.readFileSync(file)), entry.hash, `artifact_checksum_mismatch:${entry.path}`);
+}
+
+const runtime = JSON.parse(fs.readFileSync(path.join(mirrorRoot, "site/data/runtime-config.json"), "utf8"));
+assert.equal(runtime.environment, "production", "runtime_environment_invalid");
+assert.equal(runtime.analytics?.enabled, false, "analytics_must_remain_disabled");
+const robots = fs.readFileSync(path.join(mirrorRoot, "site/robots.txt"), "utf8");
+assert.equal(robots, "User-agent: *\nAllow: /\nSitemap: https://solven.jp/sitemap.xml\n", "production_robots_invalid");
+const index = fs.readFileSync(path.join(mirrorRoot, "site/index.html"), "utf8");
+assert.match(index, /<meta name="robots" content="index,follow">/, "production_indexing_meta_missing");
+assert.match(index, /<link rel="canonical" href="https:\/\/solven\.jp\/">/, "production_canonical_missing");
+
+verifyFormalScope(entries);
+verifyChangedScope(argument("--base"));
+const compareRoot = argument("--compare-root");
+if (compareRoot) verifyComparison(compareRoot, entries);
+process.stdout.write(`production-mirror: PASS (${entries.length} files; source=${baselineCommit})\n`);
