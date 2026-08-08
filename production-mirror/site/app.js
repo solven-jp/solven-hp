@@ -16,6 +16,10 @@ const consentButton = document.querySelector("#analytics-consent");
 const consentStatus = document.querySelector("#analytics-status");
 const analytics = createAnalyticsClient();
 const serviceLabels = { HP: "HP", LP: "LP", WEBAPP: "Webアプリ", MAINTENANCE: "保守" };
+const serviceQueryLabels = {
+  "SPOT-SHEET-001": "Excel・スプレッドシート スポット改善",
+  "SPOT-CONTENT-001": "ビジネス文章・公開前チェック"
+};
 let csrfToken = "";
 let sessionId = "";
 let pendingIdempotencyKey = "";
@@ -386,6 +390,15 @@ function disableContactFormForStaging() {
   diagnosisResult.dataset.state = "staging";
 }
 
+function configureStaticPreview() {
+  for (const control of contactForm.elements) control.disabled = true;
+  contactForm.setAttribute("aria-disabled", "true");
+  for (const control of diagnosisForm.elements) control.disabled = false;
+  diagnosisForm.removeAttribute("aria-disabled");
+  status.replaceChildren();
+  status.hidden = true;
+}
+
 function enableContactFormForInteractiveRuntime() {
   for (const control of contactForm.elements) control.disabled = false;
   contactForm.removeAttribute("aria-disabled");
@@ -393,13 +406,22 @@ function enableContactFormForInteractiveRuntime() {
   diagnosisForm.removeAttribute("aria-disabled");
 }
 
+function applyServicePreselection() {
+  const requested = new URLSearchParams(location.search).get("service");
+  const selected = serviceQueryLabels[requested] || requested;
+  const control = contactForm.elements.namedItem("service");
+  if (!selected || ![...control.options].some((option) => option.value === selected)) return;
+  control.value = selected;
+}
+
 async function loadRuntimeConfig() {
   const response = await fetch("/data/runtime-config.json", { cache: "no-store" });
   const runtimeConfig = response.ok ? await response.json() : {};
-  runtimeEnvironment = ["local", "production"].includes(runtimeConfig.environment) ? runtimeConfig.environment : "staging";
+  runtimeEnvironment = ["local", "production", "static-preview"].includes(runtimeConfig.environment) ? runtimeConfig.environment : "staging";
   analytics.configure(runtimeConfig);
   if (runtimeEnvironment === "staging") disableContactFormForStaging();
-  else enableContactFormForInteractiveRuntime();
+  else if (runtimeEnvironment === "static-preview") configureStaticPreview();
+  else { enableContactFormForInteractiveRuntime(); applyServicePreselection(); }
   updateConsentControl();
 }
 
@@ -505,8 +527,8 @@ contactForm.addEventListener("focusin", () => {
 
 contactForm.addEventListener("submit", async (event) => {
   event.preventDefault();
-  if (runtimeEnvironment === "staging") {
-    disableContactFormForStaging();
+  if (["staging", "static-preview"].includes(runtimeEnvironment)) {
+    if (runtimeEnvironment === "staging") disableContactFormForStaging();
     return;
   }
   validationAttempted = true;
@@ -524,6 +546,8 @@ contactForm.addEventListener("submit", async (event) => {
   const form = new FormData(contactForm);
   const payload = Object.fromEntries(form.entries());
   payload.privacy_consent = form.get("privacy_consent") === "on";
+  payload.no_sensitive_data_confirmed = form.get("no_sensitive_data_confirmed") === "on";
+  payload.fact_check_requested = form.get("fact_check_requested") === "on";
   const params = new URLSearchParams(location.search);
   for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_content"]) payload[key] = params.get(key) || "";
   payload.landing_page = location.pathname;
@@ -576,6 +600,9 @@ for (const control of validationControls) {
 for (const link of document.querySelectorAll('a[href="#contact"]')) {
   link.addEventListener("click", () => analytics.track("contact_cta", { method: "onsite" }));
 }
+for (const link of document.querySelectorAll('[data-analytics-event="cta_click"]')) {
+  link.addEventListener("click", () => analytics.track("cta_click", { method: "onsite", service: link.dataset.service || "" }));
+}
 
 consentButton.addEventListener("click", () => {
   analytics.setConsent(analytics.getConsent() === "granted" ? "denied" : "granted");
@@ -584,6 +611,6 @@ consentButton.addEventListener("click", () => {
 
 updateConsentControl();
 loadRuntimeConfig()
-  .then(() => runtimeEnvironment === "staging" ? undefined : prepareSession())
+  .then(() => ["local", "production"].includes(runtimeEnvironment) ? prepareSession() : undefined)
   .catch(() => { csrfToken = ""; updateConsentControl(); });
 loadCanonical().catch((error) => { status.textContent = error.message; status.dataset.state = "error"; });

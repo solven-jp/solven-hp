@@ -17,11 +17,11 @@ For PR #2, the formal procedural gate is both of the following, bound to the exa
 
 ## Required review for this baseline
 
-1. Review `production-mirror/release-manifest.json` against the stated source commit and the 18-file checksum inventory.
+1. Review `production-mirror/release-manifest.json` against the stated source commit and the 22-file checksum inventory.
 2. Run `node scripts/verify-production-mirror.mjs`.
 3. Review every hash in `production-mirror/FORMAL_REVIEW_SCOPE.sha256`; that file lists the complete content-bearing scope of this change, excluding only itself.
-4. Read `production-mirror/INDEPENDENT_REVIEW_RECEIPT.md`, obtain the updated independent review receipt, and record PM approval for the exact head SHA after CI succeeds.
-5. Confirm that the recorded baseline is an observation of the current production site, not an authorization to deploy or to replace production with Solven-codex PR #81.
+4. Treat `production-mirror/INDEPENDENT_REVIEW_RECEIPT.md` as historical evidence for the previous baseline only. Obtain a new independent review receipt and Owner approval for the exact candidate head after CI succeeds.
+5. Confirm that the candidate records the already deployed Firebase version `626e508a8d9c5f25`; it does not authorize a new deploy or replace the legacy GitHub Pages site.
 
 ## Later, separately approved actions
 

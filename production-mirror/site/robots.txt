@@ -1,3 +1,2 @@
 User-agent: *
-Allow: /
-Sitemap: https://solven.jp/sitemap.xml
+Disallow: /

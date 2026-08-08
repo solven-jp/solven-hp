@@ -1,0 +1,225 @@
+{
+  "canonical_candidate": {
+    "id": "SOLVEN-BUSINESS-SPOT-SERVICES",
+    "version": "1.5.0",
+    "status": "OWNER_APPROVED_RELEASE_CANDIDATE",
+    "source": "canonical-candidates/business/v1.5.0/source/SOLVEN_BUSINESS_SPOT_SERVICES_v1.5.0.json"
+  },
+  "section_heading": "直したい箇所に絞って相談できます",
+  "cta": "まずは対応可否を無料で確認する",
+  "common_terms": {
+    "customer_scope": [
+      "国内法人",
+      "事業目的の個人事業主",
+      "標準国内B2B範囲"
+    ],
+    "communication": [
+      "フォーム",
+      "メール",
+      "チャット"
+    ],
+    "meeting_policy": "原則として面談なし",
+    "payment": "原則として着手前払い。現行の見積・請求・銀行振込基盤を使用する。",
+    "scope_confirmation": "作業範囲を見積・注文確認で確定する。",
+    "delivery_clock": "必要情報、対象資料、確定した作業範囲、入金が揃った時点から納期を起算する。",
+    "revision": "軽微な修正1回は、注文確認で合意済みの範囲内に限る。追加要求、用途変更、全面再構成は別見積り。",
+    "no_guarantees": [
+      "成果",
+      "売上",
+      "集客",
+      "完全な正確性",
+      "法令適合"
+    ],
+    "customer_rights_confirmation_required": true,
+    "prohibited_initial_submission": [
+      "マイナンバー",
+      "カード情報",
+      "医療情報",
+      "認証情報",
+      "秘密鍵"
+    ],
+    "initial_form_file_upload": false,
+    "initial_form_notice": "初回フォームへファイルを添付せず、個人情報・機密情報を本文へ入力しないでください。受付可否確認後に提出方法をご案内します。",
+    "data_minimization_required": true,
+    "unapproved_external_ai_prohibited": true,
+    "additional_consent_gate": "AI、クラウド、外部サービス利用に追加承諾が必要な場合は作業前に確認する。",
+    "retention_and_deletion": {
+      "declined_or_cancelled_received_files_delete_within_days": 14,
+      "customer_originals_working_copies_intermediates_delete_within_days_after_acceptance": 30,
+      "backup_residual_expire_within_additional_days": 30,
+      "qa_record_policy": "全文を残さず、検査結果、件数、hash、作業記録を保持する。",
+      "transaction_record_policy": "見積、注文、請求、入金、取引記録はactive canonicalと法令上の保存規則に従う。",
+      "legal_hold_policy": "紛争、事故、未払い、legal holdは解決まで削除を保留し、理由と解除日を記録する。",
+      "separation_required": "顧客原本と会計・取引記録を同一保持期間にしない。"
+    },
+    "unresolved_policy": "既存規則で決められない事項はOWNER_DECISION_REQUIREDとする。",
+    "standard_terms_reference": "Business v1.4.0/50_TEMPLATES/STANDARD_TERMS/SOLVEN_STANDARD_B2B_TERMS_v1.0.0.md"
+  },
+  "services": [
+    {
+      "product_id": "SPOT-SHEET-001",
+      "slug": "spreadsheet-spot-improvement",
+      "formal_name": "Excel・スプレッドシート スポット改善",
+      "public_summary": "関数が壊れた、集計が合わない、CSV整理に手間がかかる。そうした既存ファイルの困りごとを、必要な範囲に絞って改善します。",
+      "price_ex_tax_from": 15000,
+      "price_in_tax_reference": 16500,
+      "standard_delivery_business_days": {
+        "min": 2,
+        "max": 5
+      },
+      "base_scope_limits": {
+        "existing_files": 1,
+        "problems": 1,
+        "revisions": 1
+      },
+      "included": [
+        "関数修正",
+        "集計不一致の確認・修正",
+        "CSV整理",
+        "CSV統合の小規模対応",
+        "重複削除",
+        "更新日時が新しい行の抽出",
+        "日付・金額・文字形式の統一",
+        "表記ゆれ整理",
+        "軽微なGoogle Apps Script修正",
+        "処理前後の件数・合計・重複数等の検算",
+        "主な変更内容の簡易説明",
+        "軽微な修正1回"
+      ],
+      "excluded": [
+        "GASの大規模新規開発",
+        "複数ファイル・複数部署をまたぐ業務設計",
+        "外部API連携",
+        "OAuth",
+        "認証・権限設計",
+        "継続的な自動実行",
+        "本番システム変更",
+        "業務全体の再設計",
+        "Webアプリ化",
+        "大量データの個別手作業",
+        "顧客側の仕様未確定による追加調査"
+      ],
+      "qa": [
+        "元ファイルを直接上書きしていない",
+        "件数を照合した",
+        "合計値を照合した",
+        "重複数を照合した",
+        "変更点を記録した",
+        "対象外作業を混入していない"
+      ],
+      "upgrade_routes": [
+        {
+          "condition": "同じ処理を毎月繰り返す",
+          "route": "自動化・業務整理"
+        },
+        {
+          "condition": "複数人・複数工程・権限管理が必要",
+          "route": "Webアプリ"
+        },
+        {
+          "condition": "大規模改修",
+          "route": "個別見積り"
+        },
+        {
+          "condition": "継続的な更新",
+          "route": "保守・追加改修"
+        }
+      ]
+    },
+    {
+      "product_id": "SPOT-CONTENT-001",
+      "slug": "business-writing-prepublication-check",
+      "formal_name": "ビジネス文章・公開前チェック",
+      "public_summary": "HP原稿、商品説明、採用文、記事など、公開前の文章を確認します。読みやすさ・構成・誤認表現を見直し、AIで作成した文章にも対応します。",
+      "price_ex_tax_from": 10000,
+      "price_in_tax_reference": 11000,
+      "standard_delivery_business_days": {
+        "min": 2,
+        "max": 3
+      },
+      "base_scope_limits": {
+        "characters": 3000,
+        "revisions": 1
+      },
+      "included": [
+        "不自然な日本語の修正",
+        "見出し・構成の整理",
+        "重複・冗長表現の削減",
+        "曖昧な表現の指摘",
+        "誤認につながりやすい断定表現の確認",
+        "読者・用途に合わせた表現調整",
+        "修正済み完成原稿",
+        "主な修正点の一覧",
+        "軽微な修正1回"
+      ],
+      "supported_documents": [
+        "HP・LP原稿",
+        "note・ブログ記事",
+        "商品・サービス説明",
+        "採用ページ",
+        "営業資料",
+        "マニュアル",
+        "社内文書",
+        "AIで作成した文章"
+      ],
+      "excluded": [
+        "医療判断",
+        "法律判断",
+        "投資助言",
+        "金融商品",
+        "健康効果",
+        "学術的な専門家判断",
+        "資格者の確認を代替する内容",
+        "権利関係が不明な文章",
+        "違法・虚偽・誤認目的の文章"
+      ],
+      "options": [
+        {
+          "id": "PRIMARY_SOURCE_FACT_CHECK",
+          "name": "公式一次情報による事実確認",
+          "price_ex_tax_from": 15000,
+          "price_in_tax_reference": 16500,
+          "no_accuracy_or_legal_guarantee": true
+        },
+        {
+          "id": "EXTRA_3000_CHARS",
+          "name": "3,000字追加",
+          "price_ex_tax": 5000,
+          "price_in_tax_reference": 5500
+        },
+        {
+          "id": "EXPEDITE",
+          "name": "短納期",
+          "pricing": "内容確認後に個別見積り"
+        },
+        {
+          "id": "MULTI_PAGE",
+          "name": "複数ページ・資料一式",
+          "pricing": "個別見積り"
+        }
+      ],
+      "qa": [
+        "原文と修正版を対応付けた",
+        "意味を変えた箇所を明示した",
+        "断定表現を確認した",
+        "数字・引用・制度を根拠なしに確定していない",
+        "対象外専門判断を行っていない",
+        "修正点一覧を作成した"
+      ],
+      "upgrade_routes": [
+        {
+          "condition": "HP・LP全体の構成と導線設計",
+          "route": "HP・LP制作"
+        },
+        {
+          "condition": "継続的な記事・原稿更新",
+          "route": "保守・追加支援"
+        },
+        {
+          "condition": "大量原稿・複数媒体",
+          "route": "個別見積り"
+        }
+      ]
+    }
+  ]
+}

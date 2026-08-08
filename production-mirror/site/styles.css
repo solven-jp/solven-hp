@@ -25,6 +25,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 body { margin: 0; min-width: 320px; line-height: 1.75; background: var(--white); }
 body, button, input, textarea, select { font: inherit; }
@@ -826,17 +827,17 @@ footer nav a { color: var(--white); font-size: .82rem; }
 /* Current solven.jp visual language, with the newer site's service and pricing content. */
 .live-design {
   --navy: #173b52;
-  --cyan: #c96f50;
+  --cyan: #93412f;
   --white: #fffdf9;
   --ink: #302d2a;
-  --muted: #786e66;
+  --muted: #5f5750;
   --line: #ded1c4;
   --line-dark: rgba(23, 59, 82, .2);
   --surface: #faf7f2;
   --surface-strong: #f3ece5;
   --blue-soft: #f7eee8;
   --cyan-soft: #f5e4dc;
-  --focus: #c96f50;
+  --focus: #93412f;
   color: var(--ink);
   background: #faf7f2;
 }
@@ -909,7 +910,7 @@ footer nav a { color: var(--white); font-size: .82rem; }
 .live-design .transform-panel.is-after > small,
 .live-design .focused-lp b,
 .live-design .mini-app strong,
-.live-design .result-site em { background: var(--cyan); }
+.live-design .result-site em { color: var(--white); background: var(--cyan); }
 .live-design .transform-flow { color: var(--cyan); }
 
 .live-design .works-section { color: var(--ink); background: var(--white); }
@@ -954,7 +955,8 @@ footer nav a { color: var(--white); font-size: .82rem; }
 .live-design .webapp-pricing-heading span,
 .live-design .webapp-plan small { color: #fff1e9; }
 .live-design .webapp-pricing-heading p,
-.live-design .webapp-plan p { color: rgba(255, 255, 255, .86); }
+.live-design .webapp-plan p,
+.live-design .maintenance-option small { color: var(--white); }
 .live-design .webapp-pricing,
 .live-design .webapp-plan,
 .live-design .maintenance-pricing,
@@ -971,6 +973,7 @@ footer nav a { color: var(--white); font-size: .82rem; }
 .live-design .contact-section li,
 .live-design .contact-section label { color: var(--white); }
 .live-design .contact-section .section-label { color: var(--white); opacity: 1; }
+.live-design .contact-section .contact-guide li > span { color: var(--white); }
 .live-design .contact-section .contact-guide > p:not(.section-label):not(.reply-note),
 .live-design .contact-section .contact-guide li small { color: rgba(255, 255, 255, .9); }
 .live-design .contact-section .reply-note { color: var(--navy); background: var(--white); border: 1px solid rgba(255, 255, 255, .6); }
@@ -1008,4 +1011,54 @@ footer nav a { color: var(--white); font-size: .82rem; }
   .live-design .hero-copy > p { font-size: .98rem; }
   .live-design .actions .button { flex: 1 1 100%; }
   .live-design .mobile-navigation { background: var(--white); }
+}
+
+/* Spot-service candidate: additive styles only. */
+.spot-service-section { scroll-margin-top: 7rem; }
+.spot-service-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.spot-service-card { display: flex; flex-direction: column; min-height: 360px; padding: clamp(1.6rem, 3vw, 2.5rem); border: 1px solid var(--line); border-radius: 1.5rem; background: linear-gradient(145deg, #fff, #f3f8fd); box-shadow: 0 18px 48px rgba(11, 31, 53, .08); }
+.spot-service-card:nth-child(2) { background: linear-gradient(145deg, #fff, #f8f5ef); }
+.service-kicker { margin: 0 0 .8rem; color: var(--cyan); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.spot-service-card h3 { margin: 0 0 1rem; font-size: clamp(1.45rem, 2.5vw, 2rem); line-height: 1.35; }
+.spot-service-card > p:not(.service-kicker):not(.spot-price) { color: var(--muted); }
+.spot-price { display: flex; align-items: baseline; gap: .65rem; margin: auto 0 1.5rem; }
+.spot-price strong { font-size: 1.8rem; color: var(--navy); }
+.spot-price span { color: var(--muted); }
+.spot-card-actions { display: flex; flex-wrap: wrap; gap: .7rem; }
+.spot-card-actions a { display: inline-flex; align-items: center; min-height: 44px; padding: .65rem 1rem; border: 1px solid var(--cyan); border-radius: 999px; color: var(--navy); font-weight: 750; text-decoration: none; }
+.spot-card-actions a:last-child { color: #fff; background: var(--navy); border-color: var(--navy); }
+.spot-safety-note { margin: 1.25rem 0 0; padding: 1rem 1.2rem; border-left: 4px solid var(--cyan); background: #f4f8fc; color: var(--muted); }
+.spot-pricing { display: grid; grid-template-columns: minmax(250px, .8fr) minmax(0, 1.4fr); gap: 2rem; margin: 2rem 0; padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 1.5rem; color: #fff; background: var(--navy); }
+.spot-pricing h3 { margin-top: .3rem; font-size: clamp(1.45rem, 2.4vw, 2rem); }
+.spot-pricing .section-label, .spot-pricing > div > p { color: rgba(255, 255, 255, .82); }
+.spot-pricing-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.spot-pricing-list article { padding: 1.4rem; border-radius: 1rem; color: var(--navy); background: #fff; }
+.spot-pricing-list h4 { margin: 0 0 1rem; font-size: 1.1rem; }
+.spot-pricing-list p, .spot-pricing-list strong, .spot-pricing-list span { display: block; }
+.spot-pricing-list strong { font-size: 1.35rem; }
+.spot-pricing-list span, .spot-pricing-list small { color: var(--muted); }
+.service-faq { scroll-margin-top: 7rem; }
+.faq-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem 1.25rem; }
+.faq-grid details, .service-detail details { padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: .9rem; background: #fff; }
+.faq-grid summary, .service-detail summary { cursor: pointer; font-weight: 750; }
+.option-check { display: flex; align-items: center; gap: .7rem; padding-top: 1.8rem; }
+.option-check input { width: 1.2rem; height: 1.2rem; }
+.service-page { background: #f4f7fa; }
+.service-page .site-header { position: sticky; top: 0; }
+.service-detail { width: min(1040px, calc(100% - 2rem)); margin: 0 auto; padding: clamp(4rem, 8vw, 7rem) 0; }
+.service-detail > h1 { max-width: 820px; margin: .4rem 0 1rem; font-size: clamp(2.4rem, 6vw, 4.8rem); line-height: 1.15; letter-spacing: -.045em; }
+.service-lead { max-width: 760px; font-size: clamp(1.05rem, 2.2vw, 1.35rem); color: var(--muted); }
+.service-price { margin: 2rem 0; font-size: 1.55rem; font-weight: 800; color: var(--navy); }
+.service-price small { font-size: .9rem; color: var(--muted); }
+.service-detail section { margin: 1.4rem 0; padding: clamp(1.5rem, 3vw, 2.4rem); border: 1px solid var(--line); border-radius: 1.3rem; background: #fff; }
+.service-detail section h2 { margin-top: 0; }
+.service-detail li { margin: .45rem 0; }
+.service-detail .service-cta { display: inline-flex; margin-top: 1rem; }
+
+@media (max-width: 760px) {
+  .spot-service-grid, .spot-pricing, .spot-pricing-list, .faq-grid { grid-template-columns: 1fr; }
+  .spot-service-card { min-height: 0; }
+  .spot-price { margin-top: 1.5rem; }
+  .option-check { padding-top: 0; }
+  .service-page .site-header .header-cta { display: none; }
 }
