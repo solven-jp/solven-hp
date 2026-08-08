@@ -12,6 +12,7 @@ const baselineCommit = "29eecdf381407e5be51e4e97a032e70f1e011170";
 const baselineTree = "56c1256bb5c5ed778c1176ae596a9199312c268d";
 const expectedFileCount = 22;
 const scopeControlPaths = [
+  ".gitattributes",
   ".github/workflows/production-mirror-integrity.yml",
   "MIRROR_OPERATIONS.md",
   "production-mirror/INDEPENDENT_REVIEW_RECEIPT.md",
@@ -24,6 +25,11 @@ const retiredScopePaths = [".github/CODEOWNERS"];
 
 function sha256(content) {
   return crypto.createHash("sha256").update(content).digest("hex");
+}
+
+function scopeHash(relative, content) {
+  if (relative.startsWith("production-mirror/site/")) return sha256(content);
+  return sha256(Buffer.from(content.toString("utf8").replace(/\r\n/g, "\n"), "utf8"));
 }
 
 function argument(name) {
@@ -134,7 +140,7 @@ function verifyFormalScope(entries) {
   for (const entry of parsed) {
     const file = path.join(repositoryRoot, entry.path);
     assert.equal(fs.existsSync(file), true, `formal_scope_file_missing:${entry.path}`);
-    assert.equal(sha256(fs.readFileSync(file)), entry.hash, `formal_scope_hash_mismatch:${entry.path}`);
+    assert.equal(scopeHash(entry.path, fs.readFileSync(file)), entry.hash, `formal_scope_hash_mismatch:${entry.path}`);
   }
 }
 
