@@ -1,3 +1,13 @@
+# Historical preservation decision — 2026-10-21
+
+The owner selected PR #3 for preservation as a historical artifact. Keep `production-mirror/site/` and its checksum inventory byte-identical to the pinned PR #3 artifact. HP3-01 and prior review/acceptance limitations remain known and unresolved; this candidate does not claim a corrected current site or current production equality.
+
+The pinned source commit is present on GitHub as of 2026-10-21. The old local-only observation and release/quality records remain capture-time history, not current verification. See `production-mirror/release-manifest.json` → `preservation` and `production-mirror/README.md`.
+
+No legacy public source, Firebase configuration, hosting, runtime, access control, analytics, Pages publication or cutover is changed. The procedures below are retained from the previous operational baseline for reference. Their future actions are not selected or authorized by this preservation decision. Obtain fixed-candidate independent review and explicit owner push/merge approval for the metadata update.
+
+---
+
 # Production mirror operations
 
 ## Current boundary

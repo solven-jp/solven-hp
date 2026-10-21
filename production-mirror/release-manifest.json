@@ -4,7 +4,7 @@
   "release_mode": "post-release-source-sync-candidate",
   "deployment": {
     "authorized": false,
-    "reason": "This candidate records the already deployed Firebase Hosting artifact. It does not authorize another deploy or any Cloudflare, GitHub Pages, API, data, or secret change."
+    "reason": "Historical artifact preservation only. No new deployment, cutover, Pages, Cloudflare, API, data or secret change is authorized."
   },
   "source": {
     "repository": "solven-jp/solven-windows-clean",
@@ -20,7 +20,8 @@
       "SOLVEN_GA4_ENABLED": "false"
     },
     "source_tree_state": "clean",
-    "remote_visibility": "LOCAL_COMMIT_NOT_PUSHED"
+    "remote_visibility": "GITHUB_COMMIT_VERIFIED",
+    "remote_visibility_at_original_capture": "LOCAL_COMMIT_NOT_PUSHED"
   },
   "artifact": {
     "path": "site",
@@ -50,7 +51,7 @@
   },
   "update_policy": {
     "human_direct_edits": "forbidden",
-    "accepted_input": "The frozen, production-verified 22-file artifact tied to the source identity above.",
+    "accepted_input": "The frozen 22-file historical artifact pinned above. Preserving it does not assert current production identity or authorize using it as the current site.",
     "future_updates_require": [
       "A pushed immutable source commit.",
       "A regenerated static bundle, release manifest, checksums, and formal review scope.",
@@ -67,5 +68,28 @@
       "independent_codex_review_receipt_for_exact_candidate_head",
       "explicit_owner_approval_for_same_head"
     ]
+  },
+  "preservation": {
+    "purpose": "historical-snapshot-only",
+    "owner_decision_date": "2026-10-21",
+    "site_bytes_changed": false,
+    "original_capture_deployed_at": "2026-08-08T11:29:40.669Z",
+    "source_commit_verified_on_github": "2026-10-21",
+    "current_production_match": "UNVERIFIED",
+    "original_quality_gate_fields": "historical capture records; not current acceptance",
+    "known_issues": [
+      {
+        "id": "HP3-01",
+        "status": "KNOWN_UNFIXED_IN_HISTORICAL_BYTES",
+        "description": "Diagnosis consultation does not transfer its summary to the mail consultation route."
+      }
+    ],
+    "historical_hold_records_retained": [
+      "A11-BLK-01",
+      "A11-BLK-02",
+      "A11-BLK-03",
+      "previous PR2 FIX_REQUIRED"
+    ],
+    "deployment_authorized": false
   }
 }
