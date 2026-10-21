@@ -1,6 +1,6 @@
 const consentCookie = "solven_analytics_consent";
 const permittedEvents = new Set([
-  "service_view", "pricing_view", "plan_detail_view", "case_view", "contact_cta",
+  "service_view", "pricing_view", "plan_detail_view", "case_view", "contact_cta", "cta_click",
   "form_start", "form_error", "form_submit", "thank_you_view", "diagnosis_complete",
   "generate_lead"
 ]);

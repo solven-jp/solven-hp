@@ -8,10 +8,11 @@ import { fileURLToPath } from "node:url";
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const mirrorRoot = path.join(repositoryRoot, "production-mirror");
-const baselineCommit = "52224782dd4f137d30e4fb825aa0ea893f7bb6f4";
-const baselineTree = "8b4a06173648fc38be0a0b09b6aeee472dd08b8e";
-const expectedFileCount = 18;
+const baselineCommit = "29eecdf381407e5be51e4e97a032e70f1e011170";
+const baselineTree = "56c1256bb5c5ed778c1176ae596a9199312c268d";
+const expectedFileCount = 22;
 const scopeControlPaths = [
+  ".gitattributes",
   ".github/workflows/production-mirror-integrity.yml",
   "MIRROR_OPERATIONS.md",
   "production-mirror/INDEPENDENT_REVIEW_RECEIPT.md",
@@ -24,6 +25,11 @@ const retiredScopePaths = [".github/CODEOWNERS"];
 
 function sha256(content) {
   return crypto.createHash("sha256").update(content).digest("hex");
+}
+
+function scopeHash(relative, content) {
+  if (relative.startsWith("production-mirror/site/")) return sha256(content);
+  return sha256(Buffer.from(content.toString("utf8").replace(/\r\n/g, "\n"), "utf8"));
 }
 
 function argument(name) {
@@ -134,7 +140,7 @@ function verifyFormalScope(entries) {
   for (const entry of parsed) {
     const file = path.join(repositoryRoot, entry.path);
     assert.equal(fs.existsSync(file), true, `formal_scope_file_missing:${entry.path}`);
-    assert.equal(sha256(fs.readFileSync(file)), entry.hash, `formal_scope_hash_mismatch:${entry.path}`);
+    assert.equal(scopeHash(entry.path, fs.readFileSync(file)), entry.hash, `formal_scope_hash_mismatch:${entry.path}`);
   }
 }
 
@@ -157,38 +163,31 @@ function verifyChangedScope(base) {
 const manifest = JSON.parse(fs.readFileSync(path.join(mirrorRoot, "release-manifest.json"), "utf8"));
 assert.equal(manifest.schema_version, 1, "manifest_schema_version_invalid");
 assert.equal(manifest.mirror_role, "deploy-only-static-bundle-mirror", "mirror_role_invalid");
-assert.equal(manifest.release_mode, "recorded-existing-production-baseline", "release_mode_invalid");
+assert.equal(manifest.release_mode, "post-release-source-sync-candidate", "release_mode_invalid");
 assert.equal(manifest.deployment?.authorized, false, "deployment_must_remain_unauthorized");
-assert.equal(manifest.source?.repository, "solven-jp/Solven-codex", "source_repository_invalid");
+assert.equal(manifest.source?.repository, "solven-jp/solven-windows-clean", "source_repository_invalid");
 assert.equal(manifest.source?.commit, baselineCommit, "source_commit_not_pinned_baseline");
 assert.equal(manifest.source?.tree, baselineTree, "source_tree_not_pinned_baseline");
 assert.equal(manifest.source?.application_path, "apps/solven-owned-site", "source_application_path_invalid");
 assert.equal(manifest.source?.static_output_path, "apps/solven-owned-site/dist", "source_output_path_invalid");
-assert.equal(manifest.source?.build_command, "npm run build:production", "source_build_command_invalid");
+assert.equal(manifest.source?.build_command, "npm --prefix apps/solven-owned-site run build:preview-static", "source_build_command_invalid");
 assert.deepEqual(manifest.source?.build_environment, {
-  SOLVEN_RUNTIME_ENVIRONMENT: "production",
-  SOLVEN_NOINDEX: "false",
+  SOLVEN_RUNTIME_ENVIRONMENT: "static-preview",
+  SOLVEN_NOINDEX: "true",
   SOLVEN_GA4_ENABLED: "false"
 }, "source_build_environment_invalid");
 assert.equal(manifest.artifact?.path, "site", "artifact_path_invalid");
 assert.equal(manifest.artifact?.file_count, expectedFileCount, "artifact_file_count_invalid");
 assert.equal(manifest.artifact?.checksum_algorithm, "sha256", "checksum_algorithm_invalid");
 assert.equal(manifest.artifact?.checksums, "checksums.sha256", "checksum_file_invalid");
-assert.equal(manifest.excluded_source_revision?.pull_request, 81, "excluded_pr_invalid");
-assert.equal(manifest.excluded_source_revision?.merge_commit, "5c12fcaa1fa416c3c24bb5cffe90baa3fa5ad929", "excluded_merge_commit_invalid");
-assert.equal(manifest.excluded_source_revision?.state, "excluded_from_this_baseline", "excluded_revision_state_invalid");
 assert.equal(manifest.update_policy?.human_direct_edits, "forbidden", "direct_edit_policy_invalid");
-assert.equal(manifest.update_policy?.initial_baseline_exception?.source_review_status, "not_asserted_by_this_mirror", "baseline_review_status_invalid");
-assert.equal(manifest.update_policy?.initial_baseline_exception?.formal_review_status, "awaiting_updated_head_independent_review_and_pm_approval", "baseline_formal_review_status_invalid");
+assert.equal(manifest.update_policy?.formal_review_status, "OWNER_AND_INDEPENDENT_REVIEW_REQUIRED", "formal_review_status_invalid");
 assert.equal(manifest.review_governance?.github_independent_approval_available, false, "github_independent_approval_must_not_be_claimed");
 assert.equal(manifest.review_governance?.codeowners, "intentionally_absent_for_single_owner_repository", "codeowners_governance_invalid");
 assert.deepEqual(manifest.review_governance?.formal_gate, [
-  "independent_codex_review_receipt_for_exact_pr_head",
-  "explicit_pm_approval_for_same_head"
+  "independent_codex_review_receipt_for_exact_candidate_head",
+  "explicit_owner_approval_for_same_head"
 ], "formal_gate_invalid");
-assert.equal(manifest.review_governance?.main_protection?.status, "post_pr_2_merge_follow_up_not_applicable_to_pr_2", "main_protection_timing_invalid");
-assert.equal(manifest.review_governance?.main_protection?.planned_required_status_check, "Production mirror integrity", "main_protection_status_check_invalid");
-assert.equal(manifest.review_governance?.main_protection?.codeowner_requirement, "defer_until_distinct_github_user_or_team_exists", "main_protection_codeowner_requirement_invalid");
 assert.equal(fs.existsSync(path.join(repositoryRoot, ".github/CODEOWNERS")), false, "codeowners_must_remain_absent_without_independent_owner");
 
 const checksumFile = path.join(mirrorRoot, "checksums.sha256");
@@ -202,12 +201,12 @@ for (const entry of entries) {
 }
 
 const runtime = JSON.parse(fs.readFileSync(path.join(mirrorRoot, "site/data/runtime-config.json"), "utf8"));
-assert.equal(runtime.environment, "production", "runtime_environment_invalid");
+assert.equal(runtime.environment, "static-preview", "runtime_environment_invalid");
 assert.equal(runtime.analytics?.enabled, false, "analytics_must_remain_disabled");
 const robots = fs.readFileSync(path.join(mirrorRoot, "site/robots.txt"), "utf8");
-assert.equal(robots, "User-agent: *\nAllow: /\nSitemap: https://solven.jp/sitemap.xml\n", "production_robots_invalid");
+assert.equal(robots, "User-agent: *\nDisallow: /\n", "production_robots_invalid");
 const index = fs.readFileSync(path.join(mirrorRoot, "site/index.html"), "utf8");
-assert.match(index, /<meta name="robots" content="index,follow">/, "production_indexing_meta_missing");
+assert.match(index, /<meta name="robots" content="noindex,nofollow">/, "production_noindex_meta_missing");
 assert.match(index, /<link rel="canonical" href="https:\/\/solven\.jp\/">/, "production_canonical_missing");
 
 verifyFormalScope(entries);

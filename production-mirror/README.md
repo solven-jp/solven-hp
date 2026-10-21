@@ -1,40 +1,21 @@
-# Production source mirror
+# Historical static artifact mirror
 
-`production-mirror/site/` is a deploy-only, vendored static artifact. It is not a human-authored website source directory and is deliberately separate from this repository's legacy `public/` directory and `firebase.json`.
+This candidate preserves the 22-file static artifact recorded for 2026-08-08. It is historical evidence, not the current website source, a current production baseline, or a deployment instruction. The owner selected historical preservation on 2026-10-21.
 
-## Recorded baseline
+- Pinned source: `solven-jp/solven-windows-clean` commit `29eecdf381407e5be51e4e97a032e70f1e011170`, tree `56c1256bb5c5ed778c1176ae596a9199312c268d`.
+- The pinned source commit is now visible on GitHub (verified 2026-10-21). The earlier `LOCAL_COMMIT_NOT_PUSHED` observation is retained in the manifest as a capture-time record.
+- `site/`, its 22 hashes and `checksums.sha256` are unchanged. No regeneration or hand-edit of the artifact has occurred.
+- The release identifiers, ZIP hash, build settings, quality gates and source-output comparison in the manifest are historical records. The ZIP, original release and current production identity were not reverified for this preservation candidate.
+- `mirror_role` and `release_mode` retain the original capture classifications for compatibility. `preservation.purpose` defines this candidate's historical-only use; deployment remains unauthorized.
 
-- Source repository: `solven-jp/Solven-codex`
-- Source commit: `52224782dd4f137d30e4fb825aa0ea893f7bb6f4`
-- Source tree: `8b4a06173648fc38be0a0b09b6aeee472dd08b8e`
-- Source command: `cd apps/solven-owned-site && npm run build:production`
-- Output: `apps/solven-owned-site/dist` (18 files)
-- Artifact inventory: `checksums.sha256`
+## Known limitations retained
 
-The baseline was rebuilt from a clean checkout and compared with `https://solven.jp` on 2026-07-27. All 18 files matched after normalizing Cloudflare's email-obfuscation transform on HTML responses and its explicit managed-content block in `robots.txt`. This records the already-serving artifact; it does not authorize any deployment.
+HP3-01 remains unfixed in the historical bytes: the diagnosis consultation action writes to a hidden, disabled form and does not pass its summary to the mail consultation route. This artifact must not be represented as a corrected or accepted current website.
 
-## Local verification
+PC/mobile operation, current production matching and A11-BLK-01 through A11-BLK-03 remain unverified. `INDEPENDENT_REVIEW_RECEIPT.md` is evidence for its previous baseline only; its FIX_REQUIRED history is not a PASS for this candidate. The changed metadata requires its own fixed-candidate independent review and owner approval before push or merge.
 
-Run without dependencies:
+## Integrity and future use
 
-```sh
-node scripts/verify-production-mirror.mjs
-```
+Run `node scripts/verify-production-mirror.mjs` to check the frozen artifact and formal scope. This validates preservation integrity, not current website behavior or release identity.
 
-For an offline comparison with files fetched from the live site into a directory that uses the same route-to-file layout as `site/`, run:
-
-```sh
-node scripts/verify-production-mirror.mjs --compare-root /absolute/path/to/fetched-site
-```
-
-The optional comparison decodes only Cloudflare `__cf_email__` anchors, removes the paired Cloudflare decoder script, and removes the explicit Cloudflare-managed block in `robots.txt` before comparing bytes. It never calls the network.
-
-## Update rule
-
-Do not edit files under `site/` by hand. A future update must originate from a formally reviewed `Solven-codex` bundle, then update the release manifest, checksum inventory, and `FORMAL_REVIEW_SCOPE.sha256` together. The initial baseline's source-review status is intentionally not claimed here; its formal review is the purpose of this draft PR.
-
-## Formal review limitation and gate
-
-This repository has a single GitHub owner, so a self-approval cannot be treated as independent. `CODEOWNERS` is intentionally absent until a distinct GitHub user or team can own the mirror path. For PR #2, an independent Codex review receipt and explicit PM approval must both refer to the exact successful CI head; see `INDEPENDENT_REVIEW_RECEIPT.md`. Future `main` branch protection is a separate post-merge setting and does not retrospectively enforce PR #2.
-
-`firebase.json`, Cloud Run configuration, GitHub Pages configuration, Firestore, and secrets are out of scope for this mirror change.
+The legacy `public/`, `firebase.json`, hosting settings, analytics and noindex remain unchanged. No deployment, customer interaction, Pages unpublishing or production cutover is authorized. Future functional corrections must be made in an identified human-maintained source and regenerated as a separately reviewed artifact; never rewrite the historical bytes and call them the same snapshot.

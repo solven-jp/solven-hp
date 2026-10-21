@@ -1,3 +1,13 @@
+# Historical preservation decision — 2026-10-21
+
+The owner selected PR #3 for preservation as a historical artifact. Keep `production-mirror/site/` and its checksum inventory byte-identical to the pinned PR #3 artifact. HP3-01 and prior review/acceptance limitations remain known and unresolved; this candidate does not claim a corrected current site or current production equality.
+
+The pinned source commit is present on GitHub as of 2026-10-21. The old local-only observation and release/quality records remain capture-time history, not current verification. See `production-mirror/release-manifest.json` → `preservation` and `production-mirror/README.md`.
+
+No legacy public source, Firebase configuration, hosting, runtime, access control, analytics, Pages publication or cutover is changed. The procedures below are retained from the previous operational baseline for reference. Their future actions are not selected or authorized by this preservation decision. Obtain fixed-candidate independent review and explicit owner push/merge approval for the metadata update.
+
+---
+
 # Production mirror operations
 
 ## Current boundary
@@ -17,11 +27,11 @@ For PR #2, the formal procedural gate is both of the following, bound to the exa
 
 ## Required review for this baseline
 
-1. Review `production-mirror/release-manifest.json` against the stated source commit and the 18-file checksum inventory.
+1. Review `production-mirror/release-manifest.json` against the stated source commit and the 22-file checksum inventory.
 2. Run `node scripts/verify-production-mirror.mjs`.
 3. Review every hash in `production-mirror/FORMAL_REVIEW_SCOPE.sha256`; that file lists the complete content-bearing scope of this change, excluding only itself.
-4. Read `production-mirror/INDEPENDENT_REVIEW_RECEIPT.md`, obtain the updated independent review receipt, and record PM approval for the exact head SHA after CI succeeds.
-5. Confirm that the recorded baseline is an observation of the current production site, not an authorization to deploy or to replace production with Solven-codex PR #81.
+4. Treat `production-mirror/INDEPENDENT_REVIEW_RECEIPT.md` as historical evidence for the previous baseline only. Obtain a new independent review receipt and Owner approval for the exact candidate head after CI succeeds.
+5. Confirm that the candidate records the already deployed Firebase version `626e508a8d9c5f25`; it does not authorize a new deploy or replace the legacy GitHub Pages site.
 
 ## Later, separately approved actions
 

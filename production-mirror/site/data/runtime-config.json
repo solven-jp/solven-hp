@@ -4,5 +4,5 @@
     "provider": "ga4",
     "measurementId": ""
   },
-  "environment": "production"
+  "environment": "static-preview"
 }

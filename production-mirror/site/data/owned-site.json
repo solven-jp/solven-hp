@@ -1,8 +1,11 @@
 {
   "canonical": {
     "id": "SOLVEN-BUSINESS-MASTER",
-    "version": "1.2.0",
-    "as_of": "2026-07-20"
+    "version": "1.5.0-candidate",
+    "as_of": "2026-08-07",
+    "status": "OWNER_REVIEW_REQUIRED",
+    "spot_services_source": "canonical-candidates/business/v1.5.0/source/SOLVEN_BUSINESS_SPOT_SERVICES_v1.5.0.json",
+    "active_pointer_changed": false
   },
   "brand": {
     "message": "中小企業のWebを、集客から業務改善まで、運用できる形に。",
