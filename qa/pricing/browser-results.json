@@ -1,0 +1,60 @@
+{
+  "browser": "151.0.7922.34",
+  "environment": "Local static server with Firebase-style directory index routing; external requests blocked; no form submission",
+  "results": [
+    {
+      "width": 1440,
+      "status": "PASS",
+      "viewport": 1440,
+      "scroll": 1440,
+      "overflow": [],
+      "prices": 25,
+      "terms": 6,
+      "categoryLinks": 6,
+      "topToPricing": true,
+      "pricingToContactForm": true
+    },
+    {
+      "width": 768,
+      "status": "PASS",
+      "viewport": 768,
+      "scroll": 768,
+      "overflow": [],
+      "prices": 25,
+      "terms": 6,
+      "categoryLinks": 6,
+      "topToPricing": true,
+      "pricingToContactForm": true
+    },
+    {
+      "width": 375,
+      "status": "PASS",
+      "viewport": 375,
+      "scroll": 375,
+      "overflow": [],
+      "prices": 25,
+      "terms": 6,
+      "categoryLinks": 6,
+      "topToPricing": true,
+      "pricingToContactForm": true
+    },
+    {
+      "width": 320,
+      "status": "PASS",
+      "viewport": 320,
+      "scroll": 320,
+      "overflow": [],
+      "prices": 25,
+      "terms": 6,
+      "categoryLinks": 6,
+      "topToPricing": true,
+      "pricingToContactForm": true
+    }
+  ],
+  "keyboardSkipLink": "PASS",
+  "textScale200Percent": {
+    "viewport": 1280,
+    "scroll": 1280
+  },
+  "pageErrors": []
+}
