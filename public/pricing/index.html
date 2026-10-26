@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>料金表 | HP・LP制作・業務アプリ開発・保守・IT顧問 | Solven合同会社</title>
+  <meta name="description" content="Solven合同会社の料金表。HP・LP制作、リニューアル、業務アプリ開発、月額保守、IT顧問の税込価格と、支払い・検収・保証の条件をご案内します。初回相談は60分無料です。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://solven.jp/pricing">
+  <meta property="og:title" content="料金表 | Solven合同会社">
+  <meta property="og:description" content="制作・開発・保守・IT顧問の税込価格と、支払い・検収・保証の条件をご案内します。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://solven.jp/pricing">
+  <meta property="og:site_name" content="Solven合同会社">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://solven.jp/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/seo.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://solven.jp/" },
+      { "@type": "ListItem", "position": 2, "name": "料金表", "item": "https://solven.jp/pricing" }
+    ]
+  }
+  </script>
+  <style>
+    .pricing-page {
+      --bg: #05070b;
+      --panel: #111827;
+      --panel-2: #151c29;
+      --text: #e4eaf4;
+      --muted: #a9b6c8;
+      --accent: #16d6c7;
+      --line: rgba(148, 163, 184, .22);
+    }
+    .pricing-page .site-header,
+    .pricing-page .site-footer { background: #0b1018; }
+    .pricing-page .hero { background: linear-gradient(135deg, #0b1018, #05070b); }
+    .pricing-page h1 { line-height: 1.25; }
+    .pricing-page h2 { line-height: 1.5; }
+    .pricing-page h3 { line-height: 1.65; }
+    .pricing-page .section { scroll-margin-top: 24px; }
+    .pricing-page .nav-links [aria-current="page"] { color: var(--accent); }
+    .pricing-page a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+    .skip-link { position: absolute; left: 20px; top: -80px; padding: .7rem 1rem; background: var(--panel); z-index: 10; }
+    .skip-link:focus { top: 12px; }
+    .price-index { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 2rem 0 0; list-style: none; }
+    .price-index a { display: block; padding: .6rem .85rem; border: 1px solid var(--line); border-radius: 8px; text-decoration: none; }
+    .price-index a:hover { border-color: var(--accent); color: var(--accent); }
+    .pricing-page .card { padding: 1.5rem; }
+    .pricing-page .card h3 { margin-bottom: 1rem; }
+    .amount { margin: 0 0 1rem; color: var(--accent); font-size: clamp(1.6rem, 2.8vw, 2.1rem); font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.5; overflow-wrap: anywhere; }
+    #app .amount { font-size: clamp(1.25rem, 3vw, 2rem); white-space: nowrap; overflow-wrap: normal; }
+    .amount small { font-size: .9rem; font-weight: 400; }
+    .pricing-page .card .amount { color: var(--accent); }
+    .plan-details { margin: 0; padding-left: 1.2rem; color: var(--muted); }
+    .plan-details li + li { margin-top: .35rem; }
+    .plan-meta { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: .35rem 1rem; color: var(--muted); }
+    .plan-meta dt { color: var(--text); }
+    .plan-meta dd { margin: 0; }
+    .subheading { margin: 2.5rem 0 1rem; font-size: 1.25rem; }
+    .price-table { width: 100%; border-collapse: collapse; text-align: left; background: var(--panel); }
+    .price-table caption { text-align: left; margin-bottom: 1rem; font-size: 1.25rem; font-weight: 700; }
+    .price-table th, .price-table td { padding: 1rem 1.25rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .price-table thead { background: var(--panel-2); }
+    .price-table tbody th { font-weight: 500; }
+    .price-table th:first-child { width: 62%; }
+    .price-table td { font-weight: 700; font-variant-numeric: tabular-nums; }
+    .table-note { margin: 1rem 0 0; color: var(--muted); }
+    .terms { margin: 0; }
+    .terms > div { display: grid; grid-template-columns: 160px 1fr; gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--line); }
+    .terms dt { font-weight: 700; }
+    .terms dd { margin: 0; color: var(--muted); }
+    .contact-panel { padding: 2rem; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+    .contact-panel address { color: var(--muted); font-style: normal; overflow-wrap: anywhere; }
+    .contact-panel address p { margin-bottom: .5rem; }
+    @media (max-width: 820px) {
+      .pricing-page .hero { padding-bottom: 36px; }
+      .pricing-page .section { padding: 40px 0; }
+      .price-index { gap: .5rem; }
+      .price-index a { font-size: .9rem; }
+      .pricing-page .card { padding: 1.25rem; }
+      .amount { font-size: 1.8rem; }
+      #app .amount { font-size: clamp(1.25rem, 6vw, 1.7rem); }
+      .price-table th, .price-table td { padding: .9rem .7rem; font-size: .95rem; }
+      .price-table th:first-child { width: 58%; }
+      .terms > div { grid-template-columns: 1fr; gap: .35rem; }
+      .contact-panel { padding: 1.25rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body class="pricing-page">
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <nav class="nav" aria-label="メインナビゲーション">
+      <a class="logo" href="/">Solven合同会社</a>
+      <ul class="nav-links">
+        <li><a href="/#services">サービス</a></li>
+        <li><a href="/pricing" aria-current="page">料金表</a></li>
+        <li><a href="#contact">相談する</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="section-inner">
+        <ol class="breadcrumb" aria-label="パンくずリスト"><li><a href="/">ホーム</a></li><li aria-current="page">料金表</li></ol>
+        <h1 id="page-title">料金表</h1>
+        <p class="lead">HP・LP制作から、業務アプリ開発、保守・IT顧問まで。<br>掲載価格はすべて税込です。</p>
+        <div class="hero-actions"><a class="button primary" href="#contact">初回60分の無料相談</a></div>
+        <nav aria-label="料金表の目次">
+          <ul class="price-index">
+            <li><a href="#website">HP・LP制作</a></li>
+            <li><a href="#renewal">リニューアル</a></li>
+            <li><a href="#app">業務アプリ開発</a></li>
+            <li><a href="#maintenance">保守（月額）</a></li>
+            <li><a href="#advisory">IT顧問</a></li>
+            <li><a href="#terms">支払い・検収・保証</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section" id="website" aria-labelledby="website-title">
+      <div class="section-inner">
+        <h2 id="website-title">HP・LP制作</h2>
+        <div class="grid">
+          <article class="card" data-price-item="lp"><h3>LP</h3><p class="amount">132,000円</p></article>
+          <article class="card" data-price-item="hp5"><h3>HP 5ページ</h3><p class="amount">165,000円</p></article>
+          <article class="card" data-price-item="hp10"><h3>HP 10ページ</h3><p class="amount">220,000円</p></article>
+        </div>
+        <h3 class="subheading" id="options-title">オプション</h3>
+        <table class="price-table" aria-labelledby="options-title">
+          <thead><tr><th scope="col">内容</th><th scope="col">料金（税込）</th></tr></thead>
+          <tbody>
+            <tr data-price-item="page-new"><th scope="row">追加ページ（新規）</th><td>33,000円〜</td></tr>
+            <tr data-price-item="page-common"><th scope="row">追加ページ（共通）</th><td>22,000円</td></tr>
+            <tr data-price-item="lp-section"><th scope="row">LPセクション追加</th><td>11,000円</td></tr>
+            <tr data-price-item="form"><th scope="row">追加フォーム</th><td>22,000円〜</td></tr>
+            <tr data-price-item="cms"><th scope="row">簡易CMS</th><td>55,000円〜</td></tr>
+            <tr data-price-item="extra"><th scope="row">追加作業 30分</th><td>5,500円</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="renewal" aria-labelledby="renewal-title">
+      <div class="section-inner">
+        <h2 id="renewal-title">リニューアル</h2>
+        <table class="price-table" aria-labelledby="renewal-title">
+          <thead><tr><th scope="col">内容</th><th scope="col">料金（税込）</th></tr></thead>
+          <tbody>
+            <tr data-price-item="renew-part"><th scope="row">部分リニューアル</th><td>150,000円〜</td></tr>
+            <tr data-price-item="renew-standard"><th scope="row">標準リニューアル</th><td>300,000円〜</td></tr>
+            <tr data-price-item="renew-wp"><th scope="row">WordPressリニューアル</th><td>450,000円〜</td></tr>
+            <tr data-price-item="renew-function"><th scope="row">機能付きリニューアル</th><td>550,000円〜</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="app" aria-labelledby="app-title">
+      <div class="section-inner">
+        <h2 id="app-title">業務アプリ開発</h2>
+        <div class="grid two">
+          <article class="card" data-price-item="app-small"><h3>小規模</h3><p class="amount">121,000円〜</p><dl class="plan-meta"><dt>規模</dt><dd>画面1〜2</dd><dt>期間</dt><dd>1〜2週間</dd></dl></article>
+          <article class="card" data-price-item="app-mini"><h3>ミニ</h3><p class="amount">242,000〜363,000円</p><dl class="plan-meta"><dt>規模</dt><dd>画面4前後</dd><dt>期間</dt><dd>2〜5週間</dd></dl></article>
+          <article class="card" data-price-item="app-standard"><h3>スタンダード</h3><p class="amount">484,000〜726,000円</p><dl class="plan-meta"><dt>規模</dt><dd>画面8前後</dd><dt>期間</dt><dd>1〜2か月</dd></dl></article>
+          <article class="card" data-price-item="app-plus"><h3>プラス</h3><p class="amount">968,000円〜</p><dl class="plan-meta"><dt>規模</dt><dd>画面10超</dd><dt>期間</dt><dd>2〜4か月</dd></dl></article>
+        </div>
+        <p class="table-note">大規模は個別見積です。</p>
+      </div>
+    </section>
+
+    <section class="section" id="maintenance" aria-labelledby="maintenance-title">
+      <div class="section-inner">
+        <h2 id="maintenance-title">保守（月額）</h2>
+        <h3 class="subheading">HPの保守</h3>
+        <div class="grid">
+          <article class="card" data-price-item="hp-basic"><h3>HP基本</h3><p class="amount"><small>月額 </small>5,500円</p><ul class="plan-details"><li>月1回点検・報告</li><li>バックアップ</li><li>障害対応は月30分まで</li></ul></article>
+          <article class="card" data-price-item="hp-update"><h3>HP保守＋更新</h3><p class="amount"><small>月額 </small>9,900円</p><ul class="plan-details"><li>基本保守</li><li>軽微な更新 月2回まで・1回30分</li></ul></article>
+          <article class="card" data-price-item="hp-improve"><h3>HP更新＋月次改善提案つき</h3><p class="amount"><small>月額 </small>16,500円</p></article>
+        </div>
+        <h3 class="subheading">アプリの保守</h3>
+        <div class="grid">
+          <article class="card" data-price-item="app-watch"><h3>見守り</h3><p class="amount"><small>月額 </small>12,100円</p><ul class="plan-details"><li>障害の一次対応 月30分まで</li><li>月次報告</li></ul></article>
+          <article class="card" data-price-item="app-maint-standard"><h3>標準</h3><p class="amount"><small>月額 </small>24,200円</p><ul class="plan-details"><li>障害の一次対応 月30分まで</li><li>月次報告</li><li>軽微な改修 月30分まで</li></ul></article>
+          <article class="card" data-price-item="app-maint-plus"><h3>プラス</h3><p class="amount"><small>月額 </small>36,300円</p><ul class="plan-details"><li>障害の一次対応 月30分まで</li><li>月次報告</li><li>軽微な改修 月60分まで</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="advisory" aria-labelledby="advisory-title">
+      <div class="section-inner">
+        <h2 id="advisory-title">IT顧問</h2>
+        <div class="grid two">
+          <article class="card" data-price-item="advisory"><h3>IT顧問</h3><p class="amount"><small>月額 </small>33,000円</p><p>最低3か月</p></article>
+          <article class="card" data-price-item="organize"><h3>業務整理のみ</h3><p class="amount">55,000円</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="terms" aria-labelledby="terms-title">
+      <div class="section-inner">
+        <h2 id="terms-title">支払い・検収・保証</h2>
+        <dl class="terms">
+          <div data-term="hp"><dt>HPのお支払い</dt><dd>着手前50%・検収後50%</dd></div>
+          <div data-term="lp"><dt>LPのお支払い</dt><dd>前払い100%</dd></div>
+          <div data-term="app"><dt>アプリのお支払い</dt><dd>着手前50%・納品時50%</dd></div>
+          <div data-term="advisory"><dt>顧問のお支払い</dt><dd>当月分前払い</dd></div>
+          <div data-term="acceptance"><dt>検収</dt><dd>納品後5営業日が目安</dd></div>
+          <div data-term="warranty"><dt>保証</dt><dd>検収完了の翌日から90日</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="section-inner">
+        <div class="contact-panel">
+          <h2 id="contact-title">初回相談は60分無料</h2>
+          <address>
+            <p>Solven合同会社</p>
+            <p><a href="mailto:info@solven.jp">info@solven.jp</a></p>
+            <p><a href="https://www.solven.jp/">https://www.solven.jp/</a></p>
+            <p>愛知県安城市を主な活動拠点</p>
+          </address>
+          <div class="hero-actions"><a class="button primary" href="/#contact">お問い合わせフォームへ</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="footer-inner"><span>Solven合同会社</span><ul class="footer-links"><li><a href="/">トップ</a></li><li><a href="#page-title">料金表の先頭へ</a></li><li><a href="#contact">お問い合わせ</a></li></ul></div></footer>
+</body>
+</html>
